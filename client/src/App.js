@@ -5,6 +5,7 @@ import Login from './Login';
 import {Route, Routes} from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import { UserProvider } from "./context/user"
+import NavBar from './NavBar';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
+        <NavBar />
       <Routes>
         <Route path="/login" element={<Login />}/>
       </Routes>
