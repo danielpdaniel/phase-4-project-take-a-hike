@@ -5,11 +5,11 @@ function Login({ onLogin }) {
     const [usernameInput, setUsernameInput] = useState("")
     const [passwordInput, setPasswordInput] = useState("")
 
-    const user = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     function handleLoginSubmit(e){
         e.preventDefault()
-        console.log(usernameInput, passwordInput)
+    
         fetch("/login", {
             method: "POST",
             headers: {
@@ -21,7 +21,7 @@ function Login({ onLogin }) {
             })
         })
         .then((r) => r.json())
-        .then(user => onLogin(user))
+        .then(user => user.error ? null : setUser(user))
     }
 
     return (
