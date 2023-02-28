@@ -12,14 +12,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        byebug
-        user = User.find_by(id: session[:user_id])
-        if user
             session[:user_id] = nil
             render json: [], status: :no_content
-        else
-            render json: {error: "Unauthorized"}, status: :unauthorized
-        end
     end
 
 end
