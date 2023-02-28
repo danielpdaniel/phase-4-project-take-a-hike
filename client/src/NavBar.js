@@ -5,10 +5,10 @@ import { UserContext } from "./context/user";
 function NavBar(){
     const { user } = useContext(UserContext)
     return(
-        <div>
+        <nav className="navbar">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/login">{user ? "AH" : "Login"}</NavLink>
-        </div>
+        </nav>
     )
 }
 
