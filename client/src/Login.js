@@ -4,6 +4,7 @@ import { UserContext } from "./context/user";
 function Login({ onLogin }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+   
 
     const { user, setUser } = useContext(UserContext)
 
@@ -51,7 +52,7 @@ function Login({ onLogin }) {
             if(r.ok){
                 r.json().then(setUser)
             } else {
-                r.json().then(e => console.log(e))
+                r.json().then(e => console.log(e.errors[0]))
             }
         })
     }
