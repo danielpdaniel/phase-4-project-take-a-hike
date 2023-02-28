@@ -75,7 +75,7 @@ function Login() {
                 <input type="button" name="logout_btn" onClick={handleLogout} value="Logout"/>
                 <input type="button" name="signup_btn" value="Signup" onClick={handleSignup}/>
             </form>
-            {errors ? Object.keys(errors).map(key => <h4>{key}: {errors[key]}</h4>) : null}
+            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4>{key}: {errors[key]}</h4>)}</div> : null}
         </div>
     )
 }
