@@ -7,7 +7,8 @@ import React, {useState} from 'react'
 
 
 function App() {
-  const [user, setUser] = useState("")
+  // const [user, setUser] = useState("")
+  console.log(session.user)
  
   
   return (
