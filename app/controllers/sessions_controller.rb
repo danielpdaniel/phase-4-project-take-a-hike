@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+        byebug
         user = User.find_by(id: session[:user_id])
         if user
             session[:user_id] = nil

@@ -8,17 +8,17 @@ import { UserProvider } from "./context/user"
 
 
 function App() {
-  const [user, setUser] = useState(null)
+//   const [user, setUser] = useState(null)
   
- useEffect(()=>{
-  fetch("/me").then(r=>r.json()).then(user=>setUser(user))
- }, [])
+//  useEffect(()=>{
+//   fetch("/me").then(r=>r.json()).then(user=>setUser(user))
+//  }, [])
   
   return (
     <div className="App">
       <UserProvider>
       <Routes>
-        <Route path="/login" element={<Login onLogin={(user)=>setUser(user)}/>}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
       </UserProvider>
     </div>

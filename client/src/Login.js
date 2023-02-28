@@ -24,6 +24,17 @@ function Login({ onLogin }) {
         .then(user => user.error ? null : setUser(user))
     }
 
+    function handleLogout(){
+        fetch("/logout",{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(r=>r.json())
+        .then(data=>console.log(data))
+    }
+
     return (
         <div>
             {!user? <h2>Wahoo! Time to login!</h2>: <h2>Wahoo! You're logged in!</h2>}
@@ -31,8 +42,9 @@ function Login({ onLogin }) {
                 <label>Username:</label>
                     <input type="text" name="username" value={usernameInput} onChange={(e)=>setUsernameInput(e.target.value)} placeholder="type here..."/>
                 <label>Password:</label>
-                    <input type="text" name="password" value={passwordInput} onChange={(e)=>setPasswordInput(e.target.value)} placeholder="type here..."/>
+                    <input type="password" name="password" value={passwordInput} onChange={(e)=>setPasswordInput(e.target.value)} placeholder="type here..."/>
                 <input type="submit" name="login_btn"/>
+                <input type="button" name="logout_btn" onClick={handleLogout} value="Logout"/>
             </form>
         </div>
     )
