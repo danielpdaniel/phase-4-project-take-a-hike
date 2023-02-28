@@ -1,9 +1,10 @@
-import React, {useState, useContext} from "react";
+import {useState, useContext} from "react";
 import { UserContext } from "./context/user";
 
-function Login({ onLogin }) {
+function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState("")
    
 
     const { user, setUser } = useContext(UserContext)
@@ -21,8 +22,13 @@ function Login({ onLogin }) {
                 "password": password
             })
         })
-        .then((r) => r.json())
-        .then(user => user.error ? null : setUser(user))
+        .then(r=>{
+            if(r.ok){
+                r.json().then(setUser)
+            } else {
+                r.json().then(e => setErrors(e.error))
+            }
+        })
     }
 
     function handleLogout(){
@@ -52,7 +58,7 @@ function Login({ onLogin }) {
             if(r.ok){
                 r.json().then(setUser)
             } else {
-                r.json().then(e => console.log(e.errors[0]))
+                r.json().then(e => setErrors(e.errors[0]))
             }
         })
     }
@@ -69,6 +75,7 @@ function Login({ onLogin }) {
                 <input type="button" name="logout_btn" onClick={handleLogout} value="Logout"/>
                 <input type="button" name="signup_btn" value="Signup" onClick={handleSignup}/>
             </form>
+            {errors ? Object.keys(errors).map(key => <h4>{key}: {errors[key]}</h4>) : null}
         </div>
     )
 }
