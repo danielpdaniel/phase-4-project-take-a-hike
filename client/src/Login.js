@@ -44,6 +44,7 @@ function Login({ onLogin }) {
                     <input type="password" name="password" value={passwordInput} onChange={(e)=>setPasswordInput(e.target.value)} placeholder="type here..."/>
                 <input type="submit" name="login_btn"/>
                 <input type="button" name="logout_btn" onClick={handleLogout} value="Logout"/>
+                <input type="button" name="signup_btn" value="Signup"/>
             </form>
         </div>
     )
