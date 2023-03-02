@@ -6,6 +6,7 @@ const UserContext = React.createContext();
     const [user, setUser] = useState(null)
     useEffect(()=>{
         fetch("/me").then((r)=>r.json()).then(user=>{user.error ? setUser(null) : setUser(user)})
+        console.log(user)
     }, [])
     return (
         <UserContext.Provider value={{user, setUser}}>

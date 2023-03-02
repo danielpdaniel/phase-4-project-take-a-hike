@@ -11,7 +11,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         if user
             render json: user, status: :ok
         else
-            render json: {error: "Not Authorized"}, status: :unauthorized
+            render json: {error: "User Invalid"}, status: :unauthorized
         end
     end
 

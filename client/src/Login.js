@@ -25,7 +25,6 @@ function Login() {
         .then(r=>{
             if(r.ok){
                 r.json().then(setUser)
-                console.log(r)
             } else {
                 r.json().then(e => setErrors(e.error))
             }
