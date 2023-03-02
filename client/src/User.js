@@ -10,7 +10,7 @@ function User(){
         fetch(`/users/${params.id}`)
         .then(r=>r.json())
         .then(user=>{
-            if (user.ok){
+            if(user.ok){
             setPageUser(user)
             }else{
                 setPageUser("")

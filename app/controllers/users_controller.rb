@@ -15,6 +15,21 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         end
     end
 
+
+
+    def session_user
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: user, status: :ok
+        else
+            render json: {error: "Not Authorized"}, status: :unauthorized
+        end
+    end
+
+    def single_user
+
+    end
+
     def create
         user = User.create!(user_params)
         if user.valid?
