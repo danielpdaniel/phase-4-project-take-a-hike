@@ -7,7 +7,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     end
 
     def show
-        user = User.find_by(id: session[:user_id])
+        user = User.find_by(id: params[:id])
         if user
             render json: user, status: :ok
         else
