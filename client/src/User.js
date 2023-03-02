@@ -7,7 +7,6 @@ function User(){
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const {user} = useContext(UserContext)
-    console.log(user)
     
     const params = useParams();
 
@@ -34,12 +33,15 @@ function User(){
     return(
         <div>
             {pageUser ?
-                profileLoginStatus ? <h2>Yahoo! Welcome, {pageUser.username}!</h2> : <h2>Wahoo! it's {pageUser.username}</h2>
+            <div>
+                <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
+                <img src={pageUser.avatar_image} className="user_profile_avatar"/>
+                <h4>About:</h4>
+                <h5>{pageUser.about}</h5>
+                </div>
                 :
                 <h2>Error: {errors} :(</h2>
             }
-            <img src={user.avatar_image} class="user_profile_avatar"/>
-            <h4>About: {user.about}</h4>
         </div>
     )
 }
