@@ -9,8 +9,6 @@ function Login() {
 
     const { user, setUser } = useContext(UserContext)
 
-    console.log(user)
-
     function handleLoginSubmit(e){
         e.preventDefault()
     

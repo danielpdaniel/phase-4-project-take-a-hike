@@ -26,9 +26,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         end
     end
 
-    def single_user
-
-    end
 
     def create
         user = User.create!(user_params)
