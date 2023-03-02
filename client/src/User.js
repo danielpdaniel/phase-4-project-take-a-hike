@@ -7,6 +7,7 @@ function User(){
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const {user} = useContext(UserContext)
+    console.log(user)
     
     const params = useParams();
 
@@ -37,6 +38,8 @@ function User(){
                 :
                 <h2>Error: {errors} :(</h2>
             }
+            <img src={user.avatar_image} class="user_profile_avatar"/>
+            <h4>About: {user.about}</h4>
         </div>
     )
 }
