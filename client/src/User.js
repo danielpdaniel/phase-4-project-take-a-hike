@@ -10,14 +10,15 @@ function User(){
     
     const params = useParams();
 
+    // const profileLoginStatus = user ? user.id === parseInt(params.id, 10) ? true : false : false;
+
     useEffect(()=>{
         if(user){
             if(user.id === parseInt(params.id, 10)){
-                setProfileLoginStatus(true)     
-                console.log(profileLoginStatus)       
+                setProfileLoginStatus(true)
             }
         }
-    },[])
+    },[user])
 
     useEffect(()=>{
         fetch(`/users/${params.id}`)
