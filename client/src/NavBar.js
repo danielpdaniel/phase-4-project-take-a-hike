@@ -4,13 +4,24 @@ import { UserContext } from "./context/user";
 import logo from "./take_a_hike_logo.png"
 
 function NavBar(){
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
+
+    function handleLogout(){
+        fetch("/logout",{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        setUser(null)
+    }
+
     return(
         <nav className="navbar">
             <NavLink to="/"><img src={logo} id="logo"/></NavLink>
             <NavLink to="/">Home</NavLink>
             {user ? <NavLink to={`/users/${user.id}`}>My Page</NavLink>: null}
-            <NavLink to="/login">{user ? "AH" : "Login"}</NavLink>
+            {user ? <button onClick={()=>handleLogout()}>Logout</button>: <NavLink to="/login">Login</NavLink>}
         </nav>
     )
 }
