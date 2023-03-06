@@ -8,6 +8,7 @@ import { UserProvider } from "./context/user"
 import NavBar from './NavBar';
 import Home from './Home';
 import User from './User';
+import Trails from './Trails';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <UserProvider>
         <NavBar />
       <Routes>
+        <Route path="/trails" element={<Trails/>}/>
         <Route path="/users/:id" element={<User/>}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/" element={<Home/>}/>

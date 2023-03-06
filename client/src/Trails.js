@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function Trails(){
     const [trails, setTrails] = useState("")
@@ -10,7 +10,7 @@ function Trails(){
     return(
         <div>
             <li>
-                {trails ? trails.map(trail=><ul>{trail.name}</ul>): <ul>Loading...</ul>}
+                {trails ? trails.map(trail=><ul key={trail.id}>{trail.name}</ul>): <ul>Loading...</ul>}
             </li>
         </div>
     )
