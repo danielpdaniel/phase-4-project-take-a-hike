@@ -5,7 +5,7 @@ class CreateTrails < ActiveRecord::Migration[6.1]
       t.string :location
       t.string :description
       t.string :image
-      t.integer :distance
+      t.decimal :distance
       t.integer :intensity
 
       t.timestamps

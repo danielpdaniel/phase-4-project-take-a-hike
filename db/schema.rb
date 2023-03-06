@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_03_06_194639) do
     t.string "location"
     t.string "description"
     t.string "image"
-    t.integer "distance"
+    t.decimal "distance"
     t.integer "intensity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
