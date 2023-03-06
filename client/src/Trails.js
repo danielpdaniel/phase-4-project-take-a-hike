@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 
+import { NavLink } from "react-router-dom";
+
 function Trails(){
     const [trails, setTrails] = useState("")
     const [errors, setErrors] = useState("")
@@ -57,9 +59,13 @@ function Trails(){
 
     return(
         <div>
-            <li>
-                {trails ? trails.map(trail=><ul key={trail.id}>{trail.name}</ul>): <ul>Loading...</ul>}
-            </li>
+            {/* <ul>
+                {trails ? trails.map(trail=><li key={trail.id}>{trail.name}</li>): <li>Loading...</li>}
+            </ul> */}
+            <ul>
+            {trails ? trails.map(trail=><li><NavLink key={trail.id} to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
+            </ul>
+
             <form className="new_trail_form" onSubmit={(e)=>handleSubmit(e)}>
                 <label>Name: </label>
                     <input type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
