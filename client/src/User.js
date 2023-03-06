@@ -29,7 +29,7 @@ function User(){
                 r.json().then(e=>setErrors(e.error))
             }
         })
-    },[])
+    },[params])
     return(
         <div>
             {pageUser ?
