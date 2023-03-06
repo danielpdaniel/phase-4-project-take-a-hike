@@ -37,7 +37,15 @@ function Trails(){
         })
         .then(r => {
             if(r.ok){
-                r.json().then(data => console.log(data))
+                r.json().then(data => {
+                    setTrails([...trails, data])
+                    setName("")
+                    setLocation("")
+                    setDescription("")
+                    setImage("")
+                    setDistance("")
+                    setIntensity("")
+                })
             }else{
                 r.json().then(data=>setErrors(data.errors))
             }
@@ -54,17 +62,17 @@ function Trails(){
             </li>
             <form className="new_trail_form" onSubmit={(e)=>handleSubmit(e)}>
                 <label>Name: </label>
-                    <input type="text" onChange={(e)=>setName(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
                 <label>Location: </label>
-                    <input type="text" onChange={(e)=>setLocation(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setLocation(e.target.value)} value={location}/>
                 <label>Description: </label>
-                    <textarea onChange={(e)=>setDescription(e.target.value)}/>
+                    <textarea onChange={(e)=>setDescription(e.target.value)} value={description}/>
                 <label>Image link: </label>
-                    <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setImage(e.target.value)} value={image}/>
                 <label>Distance (miles): </label>
-                    <input type="text" onChange={(e)=>setDistance(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setDistance(e.target.value)} value={distance}/>
                 <label>Intensity (out of 10): </label>
-                    <input type="text" onChange={(e)=>setIntensity(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setIntensity(e.target.value)} value={intensity}/>
                     <input type="submit"/>
             </form>
             {errors ? <div><h4>Error!</h4> {errors.map(errorObj => 
