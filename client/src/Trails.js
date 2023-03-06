@@ -21,12 +21,12 @@ function Trails(){
         e.preventDefault()
 
         const postBody = {
-            name: {name},
-            location: {location},
-            description: {description},
-            image: {image},
-            distance: {distance},
-            intensity: {intensity}
+            name: name,
+            location: location,
+            description: description,
+            image: image,
+            distance: distance,
+            intensity: intensity
         }
         fetch("/trails", {
             method: "POST",
@@ -43,6 +43,7 @@ function Trails(){
             }
         })
         console.log(errors)
+        console.log(postBody)
     }
     console.log(errors)
 
