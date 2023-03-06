@@ -9,6 +9,7 @@ function NavBar(){
         <nav className="navbar">
             <NavLink to="/"><img src={logo} id="logo"/></NavLink>
             <NavLink to="/">Home</NavLink>
+            {user ? <NavLink to={`/users/${user.id}`}>My Page</NavLink>: null}
             <NavLink to="/login">{user ? "AH" : "Login"}</NavLink>
         </nav>
     )
