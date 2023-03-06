@@ -16,7 +16,22 @@ function Trail(){
     },[])
     return(
         <div>
+            {trail? 
+                <div>
+                    <h2>{trail.name}</h2> 
+                    <img src={trail.image}/>
+                    <h3>Location:</h3>
+                        <h4>{trail.location}</h4>
+                    <h3>Description:</h3>
+                        <h4>{trail.description}</h4>
+                    <h3>Distance:</h3>
+                        <h4>{trail.distance}</h4>
+                    <h3>Intensity:</h3>
+                        <h4>{trail.intensity}</h4>
 
+
+                </div>
+            :   <h2>Loading...</h2>}
         </div>
     )
 }
