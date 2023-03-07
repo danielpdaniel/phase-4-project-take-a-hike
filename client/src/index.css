@@ -72,3 +72,7 @@ nav a.neverActive {
   float:left;
   /* position: relative; */
 }
+
+.loginForm{
+  max-width: 10%;
+}

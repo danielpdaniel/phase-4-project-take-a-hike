@@ -72,7 +72,7 @@ function Login() {
     return (
         <div>
             {!user? <h2>Wahoo! Time to login!</h2>: <h2>Wahoo! You're logged in!</h2>}
-            {!user ? <form onSubmit={handleLoginSubmit}>
+            {!user ? <form onSubmit={handleLoginSubmit} className="loginForm">
                 <label>Username: </label>
                     <input type="text" name="username" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="type here..."/>
                 <label>Password: </label>
