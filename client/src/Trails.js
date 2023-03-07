@@ -63,7 +63,7 @@ function Trails(){
             {trails ? trails.map(trail=><li key={trail.id}><NavLink to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
             </ul>
 
-            <form className="new_trail_form" onSubmit={(e)=>handleSubmit(e)}>
+            <form className="newTrailForm" onSubmit={(e)=>handleSubmit(e)}>
                 <label>Name: </label>
                     <input type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
                 <label>Location: </label>

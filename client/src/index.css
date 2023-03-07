@@ -48,14 +48,14 @@ nav a {
   color: var(--tertiaryColor)
 }
 
-nav .active {
+nav a.active {
   background-color: var(--secondaryColor);
   color: var(--mainColor);
   padding: 10px;
   border-radius: 4px
 }
 
-nav .neverActive {
+nav a.neverActive {
   /* background-color: transparent; */
   /* color: var(--mainColor); */
   padding: 0px;
@@ -63,4 +63,12 @@ nav .neverActive {
 
 .user_profile_avatar {
   width: 130px;
+}
+
+.newTrailForm {
+  max-width: 10%;
+  display:block;
+  margin: auto;
+  float:left;
+  /* position: relative; */
 }
