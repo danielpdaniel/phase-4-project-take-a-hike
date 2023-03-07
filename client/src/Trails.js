@@ -63,7 +63,7 @@ function Trails(){
                 {trails ? trails.map(trail=><li key={trail.id}>{trail.name}</li>): <li>Loading...</li>}
             </ul> */}
             <ul>
-            {trails ? trails.map(trail=><li><NavLink key={trail.id} to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
+            {trails ? trails.map(trail=><li key={trail.id}><NavLink to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
             </ul>
 
             <form className="new_trail_form" onSubmit={(e)=>handleSubmit(e)}>
