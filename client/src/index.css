@@ -44,7 +44,21 @@ body {
 
 nav a {
   margin: 10px;
+  padding: 10px;
   color: var(--tertiaryColor)
+}
+
+nav .active {
+  background-color: var(--secondaryColor);
+  color: var(--mainColor);
+  padding: 10px;
+  border-radius: 4px
+}
+
+nav .neverActive {
+  /* background-color: transparent; */
+  /* color: var(--mainColor); */
+  padding: 0px;
 }
 
 .user_profile_avatar {

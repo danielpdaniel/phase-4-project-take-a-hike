@@ -52,11 +52,8 @@ function Trails(){
                 r.json().then(data=>setErrors(data.errors))
             }
         })
-        console.log(errors)
-        console.log(postBody)
     }
-    console.log(errors)
-
+  
     return(
         <div>
             {/* <ul>

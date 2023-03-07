@@ -18,7 +18,7 @@ function NavBar(){
 
     return(
         <nav className="navbar">
-            <NavLink to="/"><img src={logo} id="logo"/></NavLink>
+            <NavLink to="/" className="neverActive"><img src={logo} id="logo"/></NavLink>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/trails">Trails</NavLink>
             {user ? <NavLink to={`/users/${user.id}`}>My Page</NavLink>: null}
