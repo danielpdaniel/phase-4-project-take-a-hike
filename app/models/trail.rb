@@ -1,4 +1,7 @@
 class Trail < ApplicationRecord
+    has_many :hikes
+    has_many :users, through: :hikes
+
     validates :name, presence: true
     validates :location, presence: true
     validates :description, presence: true, length: {minimum: 5, maximum: 1000}
