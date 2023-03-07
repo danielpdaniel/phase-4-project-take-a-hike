@@ -12,13 +12,13 @@ function Trail(){
                r.json().then(data => setTrail(data))
             }
         })
-    },[])
+    },[params.id])
     return(
         <div>
             {trail? 
                 <div>
                     <h2>{trail.name}</h2> 
-                    <img src={trail.image}/>
+                    <img alt={trail.name} src={trail.image}/>
                     <h3>Location:</h3>
                         <h4>{trail.location}</h4>
                     <h3>Description:</h3>

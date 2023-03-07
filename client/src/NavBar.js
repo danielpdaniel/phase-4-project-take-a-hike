@@ -1,4 +1,4 @@
-import react, { useContext} from "react";
+import { useContext} from "react";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "./context/user";
 import logo from "./take_a_hike_logo.png"
@@ -18,7 +18,7 @@ function NavBar(){
 
     return(
         <nav className="navbar">
-            <NavLink to="/" className="neverActive"><img src={logo} id="logo"/></NavLink>
+            <NavLink to="/" className="neverActive"><img src={logo} id="logo" alt="take a hike smiling sun with shades logo"/></NavLink>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/trails">Trails</NavLink>
             {user ? <NavLink to={`/users/${user.id}`}>My Page</NavLink>: null}

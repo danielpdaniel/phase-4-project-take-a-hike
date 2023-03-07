@@ -18,7 +18,8 @@ function User(){
                 setProfileLoginStatus(true)
             }
         }
-    },[user])
+    
+    },[user, params.id])
 
     useEffect(()=>{
         fetch(`/users/${params.id}`)
@@ -29,13 +30,14 @@ function User(){
                 r.json().then(e=>setErrors(e.error))
             }
         })
-    },[params])
+        
+    },[params, params.id])
     return(
         <div>
             {pageUser ?
             <div>
                 <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
-                <img src={pageUser.avatar_image} className="user_profile_avatar"/>
+                <img src={pageUser.avatar_image} className="user_profile_avatar" alt={`${pageUser.username} avatar`}/>
                 <h4>About:</h4>
                 <h5>{pageUser.about}</h5>
                 </div>
