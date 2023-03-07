@@ -37,20 +37,26 @@ function User(){
             {pageUser ?
             <div>
                 <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
-                <img src={pageUser.avatar_image} className="user_profile_avatar" alt={`${pageUser.username} avatar`}/>
-                <h4>About:</h4>
-                <h5>{pageUser.about}</h5>
-                <h4>My Hikes:</h4>
-                    {pageUser.hikes.map(hike => 
-                    <div key={"hike"+hike.id}>
-                        <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
-                        <p>{hike.notes}</p>
-                    </div>)}
-                <h4>My Trails:</h4>
-                    {pageUser.trails.map(trail => 
-                    <div key={"trail"+trail.id}>
-                        <h5>{trail.name}</h5>
-                    </div>)}
+                <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>
+                <div className="myAbout">
+                    <h4>About:</h4>
+                    <h5>{pageUser.about}</h5>
+                </div>
+                <div className="myHikes">
+                    <h4>My Hikes:</h4>
+                        {pageUser.hikes.map(hike => 
+                        <div key={"hike"+hike.id}>
+                            <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
+                            <p>{hike.notes}</p>
+                        </div>)}
+                </div>
+                <div className="myTrails">
+                    <h4>My Trails:</h4>
+                        {pageUser.trails.map(trail => 
+                        <div key={"trail"+trail.id}>
+                            <h5>{trail.name}</h5>
+                        </div>)}
+                </div>
             </div>
                 :
                 <h2>Error: {errors} :(</h2>

@@ -61,10 +61,6 @@ nav a.neverActive {
   padding: 0px;
 }
 
-.user_profile_avatar {
-  width: 130px;
-}
-
 .newTrailForm {
   max-width: 10%;
   display:block;
@@ -80,3 +76,42 @@ nav a.neverActive {
 /* input {
   width: 300px;
 } */
+
+.myHikes {
+  width: 30%;
+  display: block;
+  float: left;
+  background-color: var(--mainColor);
+  border-radius: 7px;
+  padding: 2%;
+  margin: 2%;
+}
+
+.myTrails {
+  width: 30%;
+  display: block;
+  float: left;
+  background-color: var(--mainColor);
+  border-radius: 7px;
+  padding: 2%;
+  margin: 2%;
+}
+
+.myAbout {
+  width: 30%;
+  /* display: block; */
+  /* float: left; */
+  background-color: var(--mainColor);
+  border-radius: 7px;
+  padding: 2%;
+  margin: 2%;
+}
+
+.myAvatar {
+  width: 130px;
+  border-radius: 7px;
+  padding: 2%;
+  margin: 2%;
+  /* display: block; */
+  /* float: left; */
+}
