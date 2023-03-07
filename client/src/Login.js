@@ -72,7 +72,7 @@ function Login() {
     return (
         <div>
             {!user? <h2>Wahoo! Time to login!</h2>: <h2>Wahoo! You're logged in!</h2>}
-            <form onSubmit={handleLoginSubmit}>
+            {!user ? <form onSubmit={handleLoginSubmit}>
                 <label>Username: </label>
                     <input type="text" name="username" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="type here..."/>
                 <label>Password: </label>
@@ -86,8 +86,8 @@ function Login() {
                 <div>
                 <button onClick={handleLogout}>Logout</button>
                 </div>}
-            </form>
-            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4>{key}: {errors[key]}</h4>)}</div> : null}
+            </form> : null}
+            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4 key={key+errors[key]}>{key}: {errors[key]}</h4>)}</div> : null}
         </div>
     )
 }
