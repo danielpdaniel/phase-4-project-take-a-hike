@@ -22,7 +22,9 @@ function NewHike(){
         const postBody = {
             user_id: user.id,
             trail_id: trailId,
-            rating: rating
+            rating: rating,
+            notes: notes,
+            image: image,
 
         }
         console.log(postBody)
@@ -37,7 +39,6 @@ function NewHike(){
     function handleRatingClick(e){
         setRating(e.target.id)
     }
-    console.log(rating)
 
     return (
         <div>
@@ -55,8 +56,15 @@ function NewHike(){
                     <input id={3} className={rating >= 3 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 3 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
                     <input id={4} className={rating >= 4 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 4 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
                     <input id={5} className={rating >= 5 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 5 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
-                    
+
+                <label>Notes:</label>
+                    <textarea onChange={(e)=>setNotes(e.target.value)}/>
+
+                <label>Image:</label>
+                    <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+
                     <input type="submit"/>
+
             </form>
         </div>
     )
