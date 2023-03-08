@@ -2,6 +2,9 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "./context/user";
 
 function EditHike(props){
+
+    console.log(props)
+    
     const { user } = useContext(UserContext)
     const [trails, setTrails] = useState("")
     const [trailId, setTrailId] = useState(props.trailId)
@@ -63,7 +66,7 @@ function EditHike(props){
             <h3>Add New Hike!</h3>
             <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
                 <label>Trail:</label>
-                    <select onChange={(e)=>handleTrailChange(e)} value={trails ? trails.filter(trail => trail.id === trailId)[0].name : null}>
+                    <select onChange={(e)=>handleTrailChange(e)} value={trails ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
                         <option>Select Trail...</option>
                         {trails ? trails.map(trail => <option key={trail.name}>{trail.name}</option>) : <option>loading...</option>}
                     </select>
