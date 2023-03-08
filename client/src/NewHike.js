@@ -45,14 +45,16 @@ function NewHike(){
             <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
                 <label>Trail:</label>
                     <select onChange={(e)=>handleTrailChange(e)}>
+                        <option>Select Trail...</option>
                         {trails ? trails.map(trail => <option key={trail.name}>{trail.name}</option>) : <option>loading...</option>}
                     </select>
-                    <label>Rating:</label>
-                    <input id={1} type="radio" checked={rating >= 1 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
-                    <input id={2} type="radio" checked={rating >= 2 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
-                    <input id={3} type="radio" checked={rating >= 3 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
-                    <input id={4} type="radio" checked={rating >= 4 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
-                    <input id={5} type="radio" checked={rating >= 5 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+
+                <label>Rating:</label>
+                    <input id={1} className={rating >= 1 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 1 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
+                    <input id={2} className={rating >= 2 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 2 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
+                    <input id={3} className={rating >= 3 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 3 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
+                    <input id={4} className={rating >= 4 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 4 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
+                    <input id={5} className={rating >= 5 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 5 ? true : false} onClick={(e)=>handleRatingClick(e)} readOnly={true}/>
                     
                     <input type="submit"/>
             </form>
