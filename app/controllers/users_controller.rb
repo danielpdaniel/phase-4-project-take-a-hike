@@ -10,7 +10,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     def show
         user = User.find_by(id: params[:id])
         if user
-            render json: user, serializer: UserShowSerializer
+            render json: user, status: :ok, serializer: UserShowSerializer
         else
             render json: {error: "User Invalid"}, status: :unauthorized
         end
