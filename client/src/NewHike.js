@@ -21,7 +21,8 @@ function NewHike(){
         e.preventDefault()
         const postBody = {
             user_id: user.id,
-            trail_id: trailId
+            trail_id: trailId,
+            rating: rating
 
         }
         console.log(postBody)
@@ -33,14 +34,26 @@ function NewHike(){
         setTrailId(selectedTrail.id)
     }
 
+    function handleRatingClick(e){
+        setRating(e.target.id)
+    }
+    console.log(rating)
+
     return (
         <div>
             <h3>Add New Hike!</h3>
             <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
                 <label>Trail:</label>
                     <select onChange={(e)=>handleTrailChange(e)}>
-                        {trails ? trails.map(trail => <option>{trail.name}</option>) : <option>loading...</option>}
+                        {trails ? trails.map(trail => <option key={trail.name}>{trail.name}</option>) : <option>loading...</option>}
                     </select>
+                    <label>Rating:</label>
+                    <input id={1} type="radio" checked={rating >= 1 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+                    <input id={2} type="radio" checked={rating >= 2 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+                    <input id={3} type="radio" checked={rating >= 3 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+                    <input id={4} type="radio" checked={rating >= 4 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+                    <input id={5} type="radio" checked={rating >= 5 ? true : false} onClick={(e)=>handleRatingClick(e)}/>
+                    
                     <input type="submit"/>
             </form>
         </div>
