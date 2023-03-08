@@ -19,7 +19,12 @@ function NewHike(){
 
     function handleHikePostSubmit(e){
         e.preventDefault()
-        console.log(user)
+        const postBody = {
+            user_id: user.id,
+            trail_id: trailId
+
+        }
+        console.log(postBody)
 
     }
 
@@ -36,7 +41,7 @@ function NewHike(){
                     <select onChange={(e)=>handleTrailChange(e)}>
                         {trails ? trails.map(trail => <option>{trail.name}</option>) : <option>loading...</option>}
                     </select>
-                    
+                    <input type="submit"/>
             </form>
         </div>
     )
