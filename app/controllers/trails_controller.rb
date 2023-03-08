@@ -16,7 +16,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_trail_response
     def show
         trail = Trail.find_by(id: params[:id])
         if trail.valid?
-            render json: trail, status: :ok
+            render json: trail, status: :ok, serializer: TrailShowSerializer
         else
             render json: {error: "trail not found"}, status: :invalid
         end

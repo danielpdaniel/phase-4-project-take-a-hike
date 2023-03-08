@@ -1,0 +1,10 @@
+class UserShowSerializer < ActiveModel::Serializer
+  attributes :id, :username, :avatar_image, :about, :hikes
+
+  # has_many :hikes
+  has_many :trails
+
+  # def user_hikes
+  #   self.object.hikes, serializer: HikeSerializer
+  # end
+end
