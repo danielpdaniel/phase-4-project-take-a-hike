@@ -1,7 +1,7 @@
 class UserShowSerializer < ActiveModel::Serializer
-  attributes :id, :username, :avatar_image, :about, :hikes
+  attributes :id, :username, :avatar_image, :about
 
-  # has_many :hikes
+  has_many :hikes
   has_many :trails
 
   # def user_hikes

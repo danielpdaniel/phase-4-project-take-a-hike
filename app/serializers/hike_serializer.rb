@@ -1,3 +1,4 @@
 class HikeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :location, :description, :image, :distance, :intensity
+  attributes :id, :user_id, :trail_id, :rating, :notes, :image, :date
+
 end

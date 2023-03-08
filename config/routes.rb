@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   resources :trails, only: [:index, :create, :show]
+
+  resources :hikes, only: [:index, :create]
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
