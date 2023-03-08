@@ -5,6 +5,7 @@ class HikesController < ApplicationController
         hikes = Hike.all
         render json: hikes, status: :ok
     end
+    
     def create
         hike = Hike.create!(hike_params)
         if hike.valid?

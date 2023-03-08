@@ -30,6 +30,16 @@ function NewHike(){
         }
         console.log(postBody)
 
+        fetch("/hikes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postBody)
+        })
+        .then(r=>r.json())
+        .then(data=>console.log(data))
+
     }
 
     function handleTrailChange(e){
