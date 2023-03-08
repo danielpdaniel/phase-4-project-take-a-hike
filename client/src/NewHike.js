@@ -22,13 +22,21 @@ function NewHike(){
         console.log(user)
 
     }
+
+    function handleTrailChange(e){
+        const selectedTrail = trails.filter(trail => trail.name === e.target.value)[0]
+        setTrailId(selectedTrail.id)
+    }
+
     return (
         <div>
             <h3>Add New Hike!</h3>
             <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
-                <select>
-                    {trails ? trails.map(trail => <option>{trail.name}</option>) : <option>loading...</option>}
-                </select>
+                <label>Trail:</label>
+                    <select onChange={(e)=>handleTrailChange(e)}>
+                        {trails ? trails.map(trail => <option>{trail.name}</option>) : <option>loading...</option>}
+                    </select>
+                    
             </form>
         </div>
     )
