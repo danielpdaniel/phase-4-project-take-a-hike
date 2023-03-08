@@ -47,6 +47,7 @@ function User(){
                         {pageUser.hikes.map(hike => 
                         <div key={"hike"+hike.id}>
                             <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
+                            {profileLoginStatus ? <div><button>Edit</button><button>Delete</button></div>: null}
                             <p>{hike.notes}</p>
                         </div>)}
                 </div>

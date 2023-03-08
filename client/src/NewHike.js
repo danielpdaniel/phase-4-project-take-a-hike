@@ -11,6 +11,8 @@ function NewHike(){
     const [image, setImage] = useState("")
     const [date, setDate] = useState("")
 
+    const [errors, setErrors] = useState("")
+
     useEffect(()=>{
         fetch("/trails")
         .then(r=>r.json())
@@ -37,8 +39,13 @@ function NewHike(){
             },
             body: JSON.stringify(postBody)
         })
-        .then(r=>r.json())
-        .then(data=>console.log(data))
+        .then(r=>{
+            if(r.ok){
+                r.json().then(data=>console.log(data))
+            }else {
+                r.json().then(data=> setErrors(data.errors[0]))
+            }
+        })
 
     }
 
@@ -81,6 +88,7 @@ function NewHike(){
                     <input type="submit"/>
 
             </form>
+            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4 key={key+errors[key]}>{key}: {errors[key]}</h4>)}</div> : null}
         </div>
     )
 }
