@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
 import { useParams } from "react-router-dom";
+import EditHike from "./EditHike";
 
 function User(){
     const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const {user} = useContext(UserContext)
+
+    const [hikeToEdit, setHikeToEdit] = useState("")
     
     const params = useParams();
 
@@ -44,10 +47,13 @@ function User(){
                 </div>
                 <div className="myHikes">
                     <h4>My Hikes:</h4>
-                        {pageUser.hikes.map(hike => 
+                        {pageUser.hikes.map(hike =>
+                        hikeToEdit === hike.id ?
+                        <EditHike key={"hike"+hike.id} trailId={hike.trail_id}/>
+                        : 
                         <div key={"hike"+hike.id}>
                             <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
-                            {profileLoginStatus ? <div><button>Edit</button><button>Delete</button></div>: null}
+                            {profileLoginStatus ? <div><button onClick={()=>setHikeToEdit(hike.id)}>Edit</button><button>Delete</button></div>: null}
                             <p>{hike.notes}</p>
                         </div>)}
                 </div>
