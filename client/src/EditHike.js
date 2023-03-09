@@ -21,7 +21,7 @@ function EditHike(props){
         .then(data => setTrails(data))
     }, [])
 
-    function handleHikePostSubmit(e){
+    function handleHikeEdit(e){
         e.preventDefault()
         const postBody = {
             user_id: user.id,
@@ -35,7 +35,7 @@ function EditHike(props){
         console.log(postBody)
 
         fetch("/hikes", {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -64,7 +64,7 @@ function EditHike(props){
     return (
         <div>
             <h3>Add New Hike!</h3>
-            <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
+            <form className="newHikeForm" onSubmit={(e)=>handleHikeEdit(e)}>
                 <label>Trail:</label>
                     <select onChange={(e)=>handleTrailChange(e)} value={trails ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
                         <option>Select Trail...</option>

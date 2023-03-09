@@ -4,6 +4,7 @@ class Hike < ApplicationRecord
 
     validates :user_id, presence: true
     validates :trail_id, presence: true
+    validates :rating, numericality: {maximum: 5}
 
     # def name
     #     self.trail.name

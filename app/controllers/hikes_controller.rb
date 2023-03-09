@@ -14,10 +14,10 @@ class HikesController < ApplicationController
     end
 
     def update
-        hike = Hike.find_by(params[:id])
+        hike = Hike.find_by(id: params[:id])
         hike.update!(hike_params)
         if hike.valid?
-            render json: hike, status: :updated
+            render json: hike, status: :accepted
         end
     end
 
@@ -30,4 +30,5 @@ class HikesController < ApplicationController
     def invalid_hike_response(invalid)
         render json: { errors: [invalid.record.errors]}, status: :unprocessable_entity
     end
+    
 end
