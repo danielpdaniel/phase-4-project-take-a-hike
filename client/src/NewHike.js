@@ -50,7 +50,6 @@ function NewHike(){
     }
 
     function handleTrailChange(e){
-        console.log(e.target.value)
         const selectedTrail = e.target.value === "Select Trail..." ? "" : trails.filter(trail => trail.name === e.target.value)[0].id
         setTrailId(selectedTrail)
     }
