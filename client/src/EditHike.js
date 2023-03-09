@@ -44,6 +44,7 @@ function EditHike(props){
         .then(r=>{
             if(r.ok){
                 r.json().then(data=>console.log(data))
+                props.setHikeToEdit("")
             }else {
                 r.json().then(data=> setErrors(data.errors[0]))
             }

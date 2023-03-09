@@ -49,7 +49,7 @@ function User(){
                     <h4>My Hikes:</h4>
                         {pageUser.hikes.map(hike =>
                         hikeToEdit === hike.id ?
-                        <EditHike key={"hike"+hike.id} trailId={hike.trail_id} rating={hike.rating} notes={hike.notes} image={hike.image} date={hike.date} hikeId={hike.id}/>
+                        <EditHike key={"hike"+hike.id} trailId={hike.trail_id} rating={hike.rating} notes={hike.notes} image={hike.image} date={hike.date} hikeId={hike.id} setHikeToEdit={setHikeToEdit}/>
                         : 
                         <div key={"hike"+hike.id}>
                             <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
