@@ -42,6 +42,12 @@ function NewHike(){
         .then(r=>{
             if(r.ok){
                 r.json().then(data=>console.log(data))
+                setErrors("")
+                setTrailId("")
+                setRating("")
+                setDate("")
+                setImage("")
+                setNotes("")
             }else {
                 r.json().then(data=> setErrors(data.errors[0]))
             }
