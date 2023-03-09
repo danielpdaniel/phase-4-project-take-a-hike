@@ -34,7 +34,7 @@ function EditHike(props){
         }
         console.log(postBody)
 
-        fetch("/hikes", {
+        fetch(`/hikes/${props.hikeId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
