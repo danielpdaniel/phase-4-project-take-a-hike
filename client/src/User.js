@@ -44,6 +44,24 @@ function User(){
         setHikes([...filteredHikes, hikeData])
     }
 
+    function handleDeleteClick(hikeId){
+        // console.log(hikeId)
+        fetch(`/hikes/${hikeId}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(r=>{
+            if(r.ok){
+                const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
+                setHikes(filteredHikes)
+            }else{
+                r.json().then(data => setErrors(data))
+            }
+        })
+    }
+
     return(
         <div>
             {pageUser ?
@@ -70,13 +88,19 @@ function User(){
                                         updateHikeState={updateHikeState}/>
                                 : 
                                     <div key={"hike"+hike.id}>
-                                        <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>                                            {profileLoginStatus ? <div><button onClick={()=>setHikeToEdit(hike.id)}>Edit</button><button>Delete</button></div>: null}
+                                        <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>                                            
+                                        {profileLoginStatus ? 
+                                            <div>
+                                                <button onClick={()=>setHikeToEdit(hike.id)}>Edit</button>
+                                                <button onClick={()=>handleDeleteClick(hike.id)}>Delete</button>
+                                            </div>
+                                            : null}
                                          <p>{hike.notes}</p>
                                     </div>)
                         : 
                             <h5>Loading...</h5>}
                 </div>
-                
+
                 <div className="myTrails">
                     <h4>My Trails:</h4>
                         {pageUser.trails.map(trail => 
