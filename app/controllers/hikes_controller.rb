@@ -5,11 +5,19 @@ class HikesController < ApplicationController
         hikes = Hike.all
         render json: hikes, status: :ok
     end
-    
+
     def create
         hike = Hike.create!(hike_params)
         if hike.valid?
             render json: hike, status: :created
+        end
+    end
+
+    def update
+        hike = Hike.find_by(params[:id])
+        hike.update!(hike_params)
+        if hike.valid?
+            render json: hike, status: :updated
         end
     end
 
