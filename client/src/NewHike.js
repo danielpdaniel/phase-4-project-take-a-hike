@@ -64,7 +64,7 @@ function NewHike(){
             <h3>Add New Hike!</h3>
             <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
                 <label>Trail:</label>
-                    <select onChange={(e)=>handleTrailChange(e)}>
+                    <select onChange={(e)=>handleTrailChange(e)} value={trailId ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
                         <option>Select Trail...</option>
                         {trails ? trails.map(trail => <option key={trail.name}>{trail.name}</option>) : <option>loading...</option>}
                     </select>
@@ -77,13 +77,13 @@ function NewHike(){
                     <input id={5} className={rating >= 5 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 5 ? true : false} onClick={handleRatingClick} readOnly={true}/>
 
                 <label>Notes:</label>
-                    <textarea onChange={(e)=>setNotes(e.target.value)}/>
+                    <textarea onChange={(e)=>setNotes(e.target.value)} value={notes} placeholder="Tell us about your hike :)"/>
 
                 <label>Image:</label>
-                    <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setImage(e.target.value)} value={image} placeholder="Provide an image link from your hike!"/>
                 
                 <label>Date:</label>
-                    <input type="date" onChange={(e)=>setDate(e.target.value)}/>
+                    <input type="date" onChange={(e)=>setDate(e.target.value)} value={date}/>
 
                     <input type="submit"/>
 
