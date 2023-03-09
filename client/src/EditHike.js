@@ -4,7 +4,7 @@ import { UserContext } from "./context/user";
 function EditHike(props){
 
     console.log(props)
-    
+
     const { user } = useContext(UserContext)
     const [trails, setTrails] = useState("")
     const [trailId, setTrailId] = useState(props.trailId)
@@ -72,20 +72,20 @@ function EditHike(props){
                     </select>
 
                 <label>Rating:</label>
-                    <input id={1} className={rating >= 1 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 1 ? true : false} onClick={handleRatingClick} readOnly={true}/>
-                    <input id={2} className={rating >= 2 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 2 ? true : false} onClick={handleRatingClick} readOnly={true}/>
-                    <input id={3} className={rating >= 3 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 3 ? true : false} onClick={handleRatingClick} readOnly={true}/>
-                    <input id={4} className={rating >= 4 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 4 ? true : false} onClick={handleRatingClick} readOnly={true}/>
-                    <input id={5} className={rating >= 5 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 5 ? true : false} onClick={handleRatingClick} readOnly={true}/>
+                    <input id={1} className={rating >= 1 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 1 ? true : false} onClick={handleRatingClick} onChange={(e)=>console.log(e.target.value)}/>
+                    <input id={2} className={rating >= 2 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 2 ? true : false} onClick={handleRatingClick} onChange={(e)=>console.log(e.target.value)}/>
+                    <input id={3} className={rating >= 3 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 3 ? true : false} onClick={handleRatingClick} onChange={(e)=>console.log(e.target.value)}/>
+                    <input id={4} className={rating >= 4 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 4 ? true : false} onClick={handleRatingClick} onChange={(e)=>console.log(e.target.value)}/>
+                    <input id={5} className={rating >= 5 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 5 ? true : false} onClick={handleRatingClick} onChange={(e)=>console.log(e.target.value)}/>
 
                 <label>Notes:</label>
-                    <textarea onChange={(e)=>setNotes(e.target.value)}/>
+                    <textarea onChange={(e)=>setNotes(e.target.value)} value={notes}/>
 
                 <label>Image:</label>
-                    <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+                    <input type="text" onChange={(e)=>setImage(e.target.value)} value={image}/>
                 
                 <label>Date:</label>
-                    <input type="date" onChange={(e)=>setDate(e.target.value)}/>
+                    <input type="date" onChange={(e)=>setDate(e.target.value)} value={date}/>
 
                     <input type="submit"/>
 
