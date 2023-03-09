@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :trails, only: [:index, :create, :show]
 
-  resources :hikes, only: [:index, :create, :update]
+  resources :hikes, only: [:index, :create, :update, :destroy]
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

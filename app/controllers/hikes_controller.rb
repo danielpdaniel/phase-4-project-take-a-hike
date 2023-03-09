@@ -21,6 +21,12 @@ class HikesController < ApplicationController
         end
     end
 
+    def destroy
+        hike = Hike.find_by(id: params[:id])
+        hike.destroy!
+        render json: [], status: :no_content
+    end
+
     private
 
     def hike_params
