@@ -3,8 +3,6 @@ import { UserContext } from "./context/user";
 
 function EditHike(props){
 
-    console.log(props)
-
     const { user } = useContext(UserContext)
     const [trails, setTrails] = useState("")
     const [trailId, setTrailId] = useState(props.trailId)
@@ -32,7 +30,6 @@ function EditHike(props){
             date: date
 
         }
-        console.log(postBody)
 
         fetch(`/hikes/${props.hikeId}`, {
             method: "PATCH",
@@ -43,7 +40,10 @@ function EditHike(props){
         })
         .then(r=>{
             if(r.ok){
-                r.json().then(data=>console.log(data))
+                r.json().then(data=>{
+                    // console.log(data)
+                    props.updateHikeState(data)
+                })
                 props.setHikeToEdit("")
             }else {
                 r.json().then(data=> setErrors(data.errors[0]))

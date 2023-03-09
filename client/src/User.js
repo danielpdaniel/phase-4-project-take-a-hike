@@ -9,6 +9,7 @@ function User(){
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const {user} = useContext(UserContext)
 
+    const [hikes, setHikes] = useState("")
     const [hikeToEdit, setHikeToEdit] = useState("")
     
     const params = useParams();
@@ -28,13 +29,21 @@ function User(){
         fetch(`/users/${params.id}`)
         .then(r=>{
             if(r.ok){
-                r.json().then(user=>setPageUser(user))
+                r.json().then(user=>{
+                    setPageUser(user)
+                    setHikes(user.hikes)
+                })
             }else{
                 r.json().then(e=>setErrors(e.error))
             }
         })
-        
     },[params, params.id])
+
+    function updateHikeState(hikeData){
+        const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
+        setHikes([...filteredHikes, hikeData])
+    }
+
     return(
         <div>
             {pageUser ?
@@ -47,15 +56,23 @@ function User(){
                 </div>
                 <div className="myHikes">
                     <h4>My Hikes:</h4>
-                        {pageUser.hikes.map(hike =>
-                        hikeToEdit === hike.id ?
-                        <EditHike key={"hike"+hike.id} trailId={hike.trail_id} rating={hike.rating} notes={hike.notes} image={hike.image} date={hike.date} hikeId={hike.id} setHikeToEdit={setHikeToEdit}/>
-                        : 
-                        <div key={"hike"+hike.id}>
-                            <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
-                            {profileLoginStatus ? <div><button onClick={()=>setHikeToEdit(hike.id)}>Edit</button><button>Delete</button></div>: null}
-                            <p>{hike.notes}</p>
-                        </div>)}
+                        {hikes ? hikes.map(hike => hikeToEdit === hike.id ?
+                                <EditHike key={"hike"+hike.id} 
+                                    trailId={hike.trail_id} 
+                                    rating={hike.rating} 
+                                    notes={hike.notes} 
+                                    image={hike.image} 
+                                    date={hike.date} 
+                                    hikeId={hike.id} 
+                                    setHikeToEdit={setHikeToEdit} 
+                                    updateHikeState={updateHikeState}/>
+                                : 
+                                <div key={"hike"+hike.id}>
+                                    <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>
+                                    {profileLoginStatus ? <div><button onClick={()=>setHikeToEdit(hike.id)}>Edit</button><button>Delete</button></div>: null}
+                                    <p>{hike.notes}</p>
+                                </div>)
+                            : <h5>Loading...</h5>}
                 </div>
                 <div className="myTrails">
                     <h4>My Trails:</h4>
