@@ -9,7 +9,8 @@ const UserContext = React.createContext();
             if(r.ok){
                 r.json().then(u=>setUser(u))
             }else {
-                r.json().then(e=>console.log(e))
+                // r.json().then(e=>console.log(e))
+                setUser(null)
             }
         })
     },[])
