@@ -76,6 +76,11 @@ function NewHike(){
                     </select>
 
                 <label>Rating:</label>
+                <label for={1}>{rating >= 1 ? "★" : "☆"}</label>
+                <label for={2}>{rating >= 2 ? "★" : "☆"}</label>
+                <label for={3}>{rating >= 3 ? "★" : "☆"}</label>
+                <label for={4}>{rating >= 4 ? "★" : "☆"}</label>
+                <label for={5}>{rating >= 5 ? "★" : "☆"}</label>
                     <input id={1} className={rating >= 1 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 1 ? true : false} onClick={handleRatingClick} readOnly={true}/>
                     <input id={2} className={rating >= 2 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 2 ? true : false} onClick={handleRatingClick} readOnly={true}/>
                     <input id={3} className={rating >= 3 ? "clickedRating" : "unClickedRating"} type="radio" checked={rating >= 3 ? true : false} onClick={handleRatingClick} readOnly={true}/>

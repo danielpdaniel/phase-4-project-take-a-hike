@@ -115,3 +115,16 @@ nav a.neverActive {
   /* display: block; */
   /* float: left; */
 }
+
+.unClickedRating {
+  appearance: none;
+  margin: 0;
+  /* content: "☆"; */
+  /* content: "⭑" */
+  
+}
+
+.clickedRating {
+  appearance: none;
+  margin: 0;
+}
