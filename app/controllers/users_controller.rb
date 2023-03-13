@@ -34,6 +34,19 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         end
     end
 
+    def update
+        user = User.find_by(id: params[:id])
+
+        if session[:user_id] === hike.user_id
+        user.update!(user_params)
+        end
+
+        if user.valid?
+            render json: user, status: :accepted
+        end
+        
+    end
+
     private
 
     def user_params
