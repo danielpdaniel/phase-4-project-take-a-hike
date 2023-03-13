@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
 import { useParams } from "react-router-dom";
 import EditHike from "./EditHike";
+import UserEdit from "./UserEdit";
 
 function User(){
     const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
+    const [userEditStatus, setUserEditStatus] = useState(false)
     const {user} = useContext(UserContext)
 
     const [hikes, setHikes] = useState("")
@@ -63,8 +65,9 @@ function User(){
     }
 
     return(
+
         <div>
-            {pageUser ?
+            {userEditStatus ? <UserEdit pageUser={pageUser} about={pageUser.about}/> : 
             <div>
                 <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
                 <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>
@@ -72,6 +75,11 @@ function User(){
                     <h4>About:</h4>
                     <h5>{pageUser.about}</h5>
                 </div>
+            </div>}
+            <button onClick={() => setUserEditStatus(!userEditStatus)}>Edit</button>
+            {pageUser ?
+            <div>
+                
                 <div className="myHikes">
                     <h4>My Hikes:</h4>
                         {hikes ? 
