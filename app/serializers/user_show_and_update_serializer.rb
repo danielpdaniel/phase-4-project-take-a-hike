@@ -1,4 +1,4 @@
-class UserShowSerializer < ActiveModel::Serializer
+class UserShowAndUpdateSerializer < ActiveModel::Serializer
   attributes :id, :username, :avatar_image, :about
 
   has_many :hikes

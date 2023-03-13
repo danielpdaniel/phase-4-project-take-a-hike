@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-function UserEdit({profileLoginStatus, pageUser}){
+function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}){
     const [about, setAbout] = useState(pageUser.about)
     const [avatar, setAvatar] = useState(pageUser.avatar_image)
-    console.log(pageUser)
+
     function handleAboutChange(e){
         setAbout(e.target.value)
     }
@@ -11,7 +11,6 @@ function UserEdit({profileLoginStatus, pageUser}){
     function handleAvatarChange(e){
         setAvatar(e.target.value)
     }
-    console.log(about)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -29,8 +28,10 @@ function UserEdit({profileLoginStatus, pageUser}){
             body: JSON.stringify(patchBody)
         })
         .then(r=>r.json())
-        .then(data=>{console.log(data); 
-            console.log(patchBody)})
+        .then(data=>{
+            setPageUser(data);
+            setUserEditStatus(false)
+        })
     }
 
     return(

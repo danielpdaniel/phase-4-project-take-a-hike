@@ -47,7 +47,6 @@ function User(){
     }
 
     function handleDeleteClick(hikeId){
-        // console.log(hikeId)
         fetch(`/hikes/${hikeId}`,{
             method: "DELETE",
             headers: {
@@ -67,7 +66,7 @@ function User(){
     return(
 
         <div>
-            {userEditStatus ? <UserEdit pageUser={pageUser} about={pageUser.about}/> : 
+            {userEditStatus ? <UserEdit pageUser={pageUser} about={pageUser.about} setPageUser={setPageUser} setUserEditStatus={setUserEditStatus}/> : 
             <div>
                 <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
                 <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>
