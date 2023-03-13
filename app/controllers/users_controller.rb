@@ -50,7 +50,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     private
 
     def user_params
-        params.permit(:username, :password, :avatar_image)
+        params.permit(:username, :password, :avatar_image, :about)
     end
 
     # def not_found_user_response

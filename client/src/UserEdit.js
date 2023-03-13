@@ -28,6 +28,9 @@ function UserEdit({profileLoginStatus, pageUser}){
             },
             body: JSON.stringify(patchBody)
         })
+        .then(r=>r.json())
+        .then(data=>{console.log(data); 
+            console.log(patchBody)})
     }
 
     return(
@@ -40,6 +43,7 @@ function UserEdit({profileLoginStatus, pageUser}){
                     <h4>About:</h4>
                     <textarea value={about} onChange={(e)=>handleAboutChange(e)}/>
                 </div>
+                <input type="submit"/>
         </form>
     )
 }
