@@ -15,7 +15,11 @@ class HikesController < ApplicationController
 
     def update
         hike = Hike.find_by(id: params[:id])
-        hike.update!(hike_params)
+
+        if session[:user_id] === hike.user_id
+            hike.update!(hike_params)
+        end
+        
         if hike.valid?
             render json: hike, status: :accepted
         end
