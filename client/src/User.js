@@ -75,7 +75,7 @@ function User(){
                     <h5>{pageUser.about}</h5>
                 </div>
             </div>}
-            <button onClick={() => setUserEditStatus(!userEditStatus)}>Edit</button>
+            {profileLoginStatus ? <button onClick={() => setUserEditStatus(!userEditStatus)}>Edit</button> : null}
             {pageUser ?
             <div>
                 
