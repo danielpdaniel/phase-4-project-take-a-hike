@@ -5,10 +5,13 @@ Welcome to take a hike! This is the code for my Flatiron School Phase 4 project.
 If you would like to run the app locally, feel free to fork and clone this repo, then navigate to the directory in your terminal and run:
 ```
 bundle install
-rails db:migrate db:seed
 npm install --prefix client
 ```
-to install any gems and npm packages as well as create the database, migrate the tables and create some seed data.
+to install any gems and npm packages. And then run:
+```
+rails db:migrate db:seed
+```
+to run the database migrations, creating the tables and providing some seed data through the seed file.
 
 ## Usage
 to run the app in the browser, open a new window in your terminal and enter:
