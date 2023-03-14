@@ -58,6 +58,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     # end
 
     def invalid_user_response(invalid)
+     
         render json: {errors: [invalid.record.errors]}, status: :unprocessable_entity
     end
 end
