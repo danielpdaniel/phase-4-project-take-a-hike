@@ -1,5 +1,6 @@
-import {useState, useEffect} from "react"
-import { useParams } from "react-router-dom"
+import {useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Trail(){
     const [trail, setTrail] = useState("")
@@ -27,6 +28,11 @@ function Trail(){
                         <h4>{trail.distance}</h4>
                     <h3>Intensity:</h3>
                         <h4>{trail.intensity}</h4>
+
+                        <h2>Users who have visited this trail!</h2>
+                        <ul>
+                            {trail.users.map(user => <li><NavLink to={`/users/${user.id}`}>{user.username}</NavLink></li>)}
+                        </ul>
 
 
                 </div>
