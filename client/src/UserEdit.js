@@ -3,6 +3,7 @@ import { useState } from "react"
 function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}){
     const [about, setAbout] = useState(pageUser.about)
     const [avatar, setAvatar] = useState(pageUser.avatar_image)
+    const [username, setUsername] = useState(pageUser.username)
 
     function handleAboutChange(e){
         setAbout(e.target.value)
@@ -16,6 +17,7 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
         e.preventDefault()
 
         const patchBody = {
+            username: username,
             about: about,
             avatar_image: avatar
         }
@@ -44,7 +46,7 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
                     <h4>About:</h4>
                     <textarea value={about} onChange={(e)=>handleAboutChange(e)}/>
                 </div>
-                <input type="submit"/>
+                <input type="submit" value="Submit Changes"/>
         </form>
     )
 }
