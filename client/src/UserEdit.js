@@ -13,6 +13,10 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
         setAvatar(e.target.value)
     }
 
+    function handleUserNameChange(e){
+        setUsername(e.target.value)
+    }
+
     function handleSubmit(e){
         e.preventDefault()
 
@@ -38,7 +42,7 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
 
     return(
         <form onSubmit={(e)=>handleSubmit(e)}>
-            <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
+            <h2>`Yahoo! Welcome, <input type="text" value={username} onChange={handleUserNameChange}/></h2>
                 <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>
                 <label for="imageEdit">Update Avatar: </label>
                 <input name="imageEdit" type="text" value={avatar} onChange={e => handleAvatarChange(e)}/>
