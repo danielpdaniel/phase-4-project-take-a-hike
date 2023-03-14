@@ -128,3 +128,8 @@ nav a.neverActive {
   appearance: none;
   margin: 0;
 }
+
+
+.trailImage {
+  width: 50%
+}

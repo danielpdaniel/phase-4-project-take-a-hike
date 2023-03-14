@@ -18,7 +18,7 @@ function Trail(){
             {trail? 
                 <div>
                     <h2>{trail.name}</h2> 
-                    <img alt={trail.name} src={trail.image}/>
+                    <img alt={trail.name} src={trail.image} className="trailImage"/>
                     <h3>Location:</h3>
                         <h4>{trail.location}</h4>
                     <h3>Description:</h3>
