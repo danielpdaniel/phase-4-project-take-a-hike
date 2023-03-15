@@ -52,9 +52,9 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
 
     return(
         <form onSubmit={(e)=>handleSubmit(e)}>
-            <h2>`Yahoo! Welcome, <input type="text" value={username} onChange={handleUserNameChange}/></h2>
+            <h2>Yahoo! Welcome, <input type="text" value={username} onChange={handleUserNameChange}/></h2>
                 <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>
-                <label>Update Avatar: </label>
+                <label htmlFor="imageEdit">Update Avatar: </label>
                 <input name="imageEdit" type="text" value={avatar} onChange={e => handleAvatarChange(e)}/>
                 <div className="myAbout">
                     <h4>About:</h4>
