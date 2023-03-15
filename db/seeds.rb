@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# User.create({username: "hotdoggity", password: "cornchip123", avatar_image: "https://postimg.cc/RJcgG9kR", about: "its me >:3"})
+# User.create({username: "hotdoggity", password: "cornchip123", avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png", about: "its me >:3"})
 
 # Trail.create({name: "Pretty Lake Stroll", location: "Sweetberry Park, MI, USA", description: "A lovely walk", image: "https://i.postimg.cc/L6bJLngf/Screen-Shot-2023-03-14-at-2-50-44-PM.png", distance: 3.5, intensity: 2})
 

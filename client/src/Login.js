@@ -53,7 +53,7 @@ function Login() {
         const user = {
             username,
             password,
-            avatar_image: "https://postimg.cc/RJcgG9kR"
+            avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
         }
         fetch("/users",{
             method: "POST",
