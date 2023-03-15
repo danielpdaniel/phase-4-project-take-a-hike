@@ -4,13 +4,19 @@ import { NavLink } from "react-router-dom";
 
 function Trail(){
     const [trail, setTrail] = useState("")
+    const [users, setUsers] = useState("")
     const params = useParams()
 
     useEffect(()=>{
         fetch(`/trails/${params.id}`)
         .then(r=>{
             if(r.ok){
-               r.json().then(data => setTrail(data))
+               r.json().then(data => {
+                setTrail(data)
+                const arr = []
+                const mappedUsers = data.users.map(u => arr.find(arrUser => arrUser.id === u.id) ? null : arr.push(u))
+                setUsers(arr)
+            })
             }
         })
     },[params.id])
@@ -31,7 +37,14 @@ function Trail(){
 
                         <h2>Users who have visited this trail!</h2>
                         <ul>
-                            {trail.users.map(user => <li><NavLink to={`/users/${user.id}`}>{user.username}</NavLink></li>)}
+                            {users ? 
+                            users.map(user => 
+                            <li key={`${user.username}Page`}>
+                                <NavLink to={`/users/${user.id}`}>{user.username}
+                                </NavLink>
+                            </li>)
+                            :
+                            <li>Loading...</li>}
                         </ul>
 
 
