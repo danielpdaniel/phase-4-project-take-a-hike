@@ -87,7 +87,7 @@ function User(){
                 <div className="myHikes">
                     <h4>My Hikes:</h4>
                         {hikes ? 
-                            hikes.map(hike => 
+                            hikes.sort((a,b)=> new Date(b.date) - new Date(a.date)).map(hike => 
                                 hikeToEdit === hike.id ?
                                     <EditHike key={"hike"+hike.id} 
                                         trailId={hike.trail_id} 
@@ -108,6 +108,7 @@ function User(){
                                             </div>
                                             : null}
                                             <img src={hike.image} className="userHikeImage"/>
+                                         <p>{hike.date}</p>
                                          <p>{hike.notes}</p>
                                     </div>)
                         : 
