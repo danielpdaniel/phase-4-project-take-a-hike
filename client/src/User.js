@@ -10,6 +10,7 @@ function User(){
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const [userEditStatus, setUserEditStatus] = useState(false)
     const {user} = useContext(UserContext)
+    const [mappedTrails, setMappedTrails] = useState([])
 
     const [hikes, setHikes] = useState("")
     const [hikeToEdit, setHikeToEdit] = useState("")
@@ -34,6 +35,10 @@ function User(){
                 r.json().then(user=>{
                     setPageUser(user)
                     setHikes(user.hikes)
+                    const arr = []
+                    const trails = user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                    setMappedTrails(arr)
+                        
                 })
             }else{
                 r.json().then(e=>setErrors(e.error))
@@ -110,10 +115,13 @@ function User(){
 
                 <div className="myTrails">
                     <h4>My Trails:</h4>
-                        {pageUser.trails.map(trail => 
-                        <div key={"trail"+trail.id}>
-                            <h5>{trail.name}</h5>
-                        </div>)}
+                        {mappedTrails.map(trail => 
+                        
+                            <div key={"trail"+trail.id}>
+                                <h5>{trail.name}</h5>
+                            </div>
+                        
+                        )}
                 </div>
             </div>
                 :
