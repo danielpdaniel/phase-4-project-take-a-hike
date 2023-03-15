@@ -30,7 +30,6 @@ function NewHike(){
             date: date
 
         }
-        console.log(postBody)
 
         fetch("/hikes", {
             method: "POST",

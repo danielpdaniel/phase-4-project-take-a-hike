@@ -107,6 +107,7 @@ function User(){
                                                 <button onClick={()=>handleDeleteClick(hike.id)}>Delete</button>
                                             </div>
                                             : null}
+                                            <img src={hike.image} className="userHikeImage"/>
                                          <p>{hike.notes}</p>
                                     </div>)
                         : 
