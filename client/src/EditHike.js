@@ -87,8 +87,10 @@ function EditHike(props){
                 
                 <label>Date:</label>
                     <input type="date" onChange={(e)=>setDate(e.target.value)} value={date}/>
-
+                <div>
+                    <button onClick={()=>props.setHikeToEdit("")}>Cancel</button>
                     <input type="submit"/>
+                    </div>
 
             </form>
             {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4 key={key+errors[key]}>{key}: {errors[key]}</h4>)}</div> : null}
