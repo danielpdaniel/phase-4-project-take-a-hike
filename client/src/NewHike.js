@@ -98,7 +98,14 @@ function NewHike(){
                     <input type="submit"/>
 
             </form>
-            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4 key={key+errors[key]}>{key}: {errors[key]}</h4>)}</div> : null}
+            {errors ? 
+            <div>
+                <h4>Error!</h4>
+                {Object.keys(errors).map(key => 
+                <h4 key={key+errors[key]}>
+                    {key}: {errors[key].length > 1 ? errors[key].map(error => error === errors[key][errors[key].length - 1] ? error : `${error}, `) : errors[key] }
+                </h4>)}
+            </div> : null}
         </div>
     )
 }
