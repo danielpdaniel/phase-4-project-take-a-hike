@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update]
   get "/session_user", to: "users#session_user"
 
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  # post "/login", to: "sessions#create"
+  # delete "/logout", to: "sessions#destroy"
+
+  resources :sessions, only: [:create, :destroy]
 
   resources :trails, only: [:index, :create, :show]
 
