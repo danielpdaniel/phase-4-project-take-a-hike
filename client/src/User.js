@@ -62,6 +62,9 @@ function User(){
             if(r.ok){
                 const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
                 setHikes(filteredHikes)
+                const trailsArr = []
+                const reMappedTrails = mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
+                setMappedTrails(trailsArr)
             }else{
                 r.json().then(data => setErrors(data))
             }
