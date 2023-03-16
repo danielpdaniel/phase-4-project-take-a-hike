@@ -36,7 +36,7 @@ function User(){
                     setPageUser(user)
                     setHikes(user.hikes)
                     const arr = []
-                    const trails = user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                    user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
                     setMappedTrails(arr)
                         
                 })
@@ -63,7 +63,7 @@ function User(){
                 const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
                 setHikes(filteredHikes)
                 const trailsArr = []
-                const reMappedTrails = mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
+                mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
                 setMappedTrails(trailsArr)
             }else{
                 r.json().then(data => setErrors(data))
@@ -110,7 +110,7 @@ function User(){
                                                 <button onClick={()=>handleDeleteClick(hike.id)}>Delete</button>
                                             </div>
                                             : null}
-                                            <img src={hike.image} className="userHikeImage"/>
+                                            <img src={hike.image} className="userHikeImage" alt="hike"/>
                                          <p>{hike.date}</p>
                                          <p>{hike.notes}</p>
                                     </div>)

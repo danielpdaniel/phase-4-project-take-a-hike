@@ -1,7 +1,6 @@
 import {useState, useContext} from "react";
 import { UserContext } from "./context/user";
 import { useNavigate } from "react-router-dom";
-import avatar from "./take_a_hike_default_avatar.png"
 
 function Login() {
     const [username, setUsername] = useState("")

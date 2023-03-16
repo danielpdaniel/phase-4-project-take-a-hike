@@ -14,7 +14,7 @@ function Trail(){
                r.json().then(data => {
                 setTrail(data)
                 const arr = []
-                const mappedUsers = data.users.map(u => arr.find(arrUser => arrUser.id === u.id) ? null : arr.push(u))
+                data.users.map(u => arr.find(arrUser => arrUser.id === u.id) ? null : arr.push(u))
                 setUsers(arr)
             })
             }
