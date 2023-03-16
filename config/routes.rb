@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :create, :update]
-  get "/me", to: "users#session_user"
+  get "/session_user", to: "users#session_user"
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

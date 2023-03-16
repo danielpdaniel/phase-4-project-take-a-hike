@@ -13,11 +13,6 @@ import Trail from './Trail';
 
 
 function App() {
-//   const [user, setUser] = useState(null)
-  
-//  useEffect(()=>{
-//   fetch("/me").then(r=>r.json()).then(user=>setUser(user))
-//  }, [])
   
   return (
     <div className="App">
