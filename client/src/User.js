@@ -83,7 +83,7 @@ function User(){
                     <h5>{pageUser.about}</h5>
                 </div>
             </div>}
-            {profileLoginStatus ? <button onClick={() => setUserEditStatus(!userEditStatus)}>{userEditStatus? "Cancel" : "Edit"}</button> : null}
+            {profileLoginStatus ? <button onClick={() => setUserEditStatus(!userEditStatus)}>{userEditStatus? "Cancel" : "Edit Profile"}</button> : null}
             {pageUser ?
             <div>
                 
@@ -92,7 +92,7 @@ function User(){
                         {hikes ? 
                             hikes.sort((a,b)=> new Date(b.date) - new Date(a.date)).map(hike => 
                                 hikeToEdit === hike.id ?
-                                    <EditHike key={"hike"+hike.id} 
+                                    <EditHike className="hikeCard" key={"hike"+hike.id} 
                                         trailId={hike.trail_id} 
                                         rating={hike.rating} 
                                         notes={hike.notes} 
@@ -102,17 +102,17 @@ function User(){
                                         setHikeToEdit={setHikeToEdit} 
                                         updateHikeState={updateHikeState}/>
                                 : 
-                                    <div key={"hike"+hike.id}>
+                                    <div key={"hike"+hike.id} className="hikeCard">
                                         <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>                                            
-                                        {profileLoginStatus ? 
+                                            <img src={hike.image} className="userHikeImage" alt="hike"/>
+                                         <p>{hike.date}</p>
+                                         <p>{hike.notes}</p>
+                                         {profileLoginStatus ? 
                                             <div>
                                                 <button onClick={()=>setHikeToEdit(hike.id)}>Edit</button>
                                                 <button onClick={()=>handleDeleteClick(hike.id)}>Delete</button>
                                             </div>
                                             : null}
-                                            <img src={hike.image} className="userHikeImage" alt="hike"/>
-                                         <p>{hike.date}</p>
-                                         <p>{hike.notes}</p>
                                     </div>)
                         : 
                             <h5>Loading...</h5>}
