@@ -12,7 +12,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         if user
             render json: user, status: :ok, serializer: UserShowAndUpdateSerializer
         else
-            render json: {error: "User Invalid"}, status: :unauthorized
+            render json: {error: "User Invalid"}, status: :unprocessable_entity
         end
     end
 
@@ -21,7 +21,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
         if user
             render json: user, status: :ok
         else
-            render json: {error: "Not Authorized"}, status: :unauthorized
+            render json: {error: "Not Found"}, status: :not_found
         end
     end
 
@@ -39,10 +39,11 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
 
         if session[:user_id] === user.id
         user.update!(user_params)
-        end
 
-        if user.valid?
-            render json: user, status: :accepted, serializer: UserShowAndUpdateSerializer
+            if user.valid?
+                render json: user, status: :accepted, serializer: UserShowAndUpdateSerializer
+            end
+            
         end
 
     end

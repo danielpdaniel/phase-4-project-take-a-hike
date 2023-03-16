@@ -7,9 +7,13 @@ class HikesController < ApplicationController
     end
 
     def create
+        if session[:user_id] == hike_params[:user_id]
         hike = Hike.create!(hike_params)
-        if hike.valid?
-            render json: hike, status: :created
+            if hike.valid?
+                render json: hike, status: :created
+            end
+        else 
+            render json: {error: "unauthorized user"}, status: :unauthorized
         end
     end
 
@@ -18,17 +22,22 @@ class HikesController < ApplicationController
 
         if session[:user_id] === hike.user_id
             hike.update!(hike_params)
-        end
         
-        if hike.valid?
-            render json: hike, status: :accepted
+            if hike.valid?
+                render json: hike, status: :accepted
+            end
         end
     end
 
     def destroy
         hike = Hike.find_by(id: params[:id])
-        hike.destroy!
-        render json: [], status: :no_content
+
+        if session[:user_id] === hike.user_id
+            hike.destroy!
+            render json: [], status: :no_content
+        else
+            render json: {error: "unauthorized user"}, status: :unauthorized
+        end
     end
 
     private
