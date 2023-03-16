@@ -8,24 +8,4 @@ class Hike < ApplicationRecord
     validates :notes, presence: true
     validates :image, presence: true
     validates :date, presence: true
-
-    # def name
-    #     self.trail.name
-    # end
-
-    # def location
-    #     self.trail.location
-    # end
-
-    # def description
-    #     self.trail.description
-    # end
-
-    # def distance
-    #     self.trail.distance
-    # end
-
-    # def intensity
-    #     self.trail.intensity
-    # end
 end
