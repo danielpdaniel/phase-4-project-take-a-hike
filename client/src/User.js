@@ -49,24 +49,6 @@ function User(){
         }
     },[user, params.id])
 
-    // useEffect(()=>{
-    //         fetch(`/api/users/${params.id}`)
-    //                 .then(r=>{
-    //                     if(r.ok){
-    //                         r.json().then(user=>{
-    //                             setPageUser(user)
-    //                             setHikes(user.hikes)
-    //                             const arr = []
-    //                             user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
-    //                             setMappedTrails(arr)
-                                    
-    //                         })
-    //                     }else{
-    //                         r.json().then(e=>setErrors(e.error))
-    //                     }
-    //                 })
-    // },[params, params.id])
-
     function updateHikeState(hikeData){
         const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
         setHikes([...filteredHikes, hikeData])
