@@ -103,8 +103,10 @@ function User(){
                                         updateHikeState={updateHikeState}/>
                                 : 
                                     <div key={"hike"+hike.id} className="hikeCard">
-                                        <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0].name}:</h5>                                            
-                                            <img src={hike.image} className="userHikeImage" alt="hike"/>
+                                        {/* <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0]["name"]}:</h5>                                     */}
+                                        <h5>{pageUser.trails.find(trail => trail.id === hike.trail_id).name}</h5>
+                                        {console.log(pageUser.trails.find(trail => trail.id === hike.trail_id).name)}
+                                        <img src={hike.image} className="userHikeImage" alt="hike"/>
                                          <p>{hike.date}</p>
                                          <p>{hike.notes}</p>
                                          {profileLoginStatus ? 

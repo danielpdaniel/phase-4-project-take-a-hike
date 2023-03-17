@@ -26,6 +26,8 @@ class HikesController < ApplicationController
             if hike.valid?
                 render json: hike, status: :accepted
             end
+        else
+            render json: {error: "unauthorized user"}, status: :unauthorized
         end
     end
 
