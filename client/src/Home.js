@@ -7,7 +7,7 @@ function Home(){
 
     const { user } = useContext(UserContext)
     return (
-        <div>
+        <div className>
             <h2>Welcome to take a hike!!!</h2>
             {user ? <HikeForm heading="Add New Hike!"/> : <h3>Log In/Signup To Start Hiking!</h3>}
         </div>
