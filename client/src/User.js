@@ -27,18 +27,20 @@ function User(){
                 setPageUser(user)
                 setHikes(user.hikes)
                 const arr = []
-                user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+               console.log(user.trails)
+               user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                // const mappytime = user ? user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail)) : null
                 setMappedTrails(arr)
             }
         }else{
             fetch(`/api/users/${params.id}`)
                     .then(r=>{
                         if(r.ok){
-                            r.json().then(user=>{
-                                setPageUser(user)
-                                setHikes(user.hikes)
+                            r.json().then(u=>{
+                                setPageUser(u)
+                                setHikes(u.hikes)
                                 const arr = []
-                                user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                                u.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
                                 setMappedTrails(arr)
                                     
                             })

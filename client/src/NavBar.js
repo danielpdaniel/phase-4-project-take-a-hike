@@ -7,7 +7,7 @@ function NavBar(){
     const { user, setUser } = useContext(UserContext)
 
     function handleLogout(){
-        fetch(`/api/sessions/${user.id}`,{
+        fetch(`/api/logout`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

@@ -7,14 +7,14 @@ const UserContext = React.createContext();
     useEffect(()=>{
         fetch("/api/me").then((r)=>{
             if(r.ok){
-                r.json().then(u=>setUser(u))
+                r.json().then(u=>{setUser(u); console.log(u)})
             }else {
                 // r.json().then(e=>console.log(e))
                 setUser(null)
             }
         })
-        console.log("testtest")
     },[])
+    console.log(user ? user.trails : "not user yet")
     
     return (
         <UserContext.Provider value={{user, setUser}}>

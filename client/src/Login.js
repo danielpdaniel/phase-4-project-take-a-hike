@@ -15,7 +15,7 @@ function Login() {
     function handleLoginSubmit(e){
         e.preventDefault()
     
-        fetch("/api/sessions", {
+        fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ function Login() {
     }
 
     function handleLogout(){
-        fetch("/api/sessions",{
+        fetch("/api/logout",{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

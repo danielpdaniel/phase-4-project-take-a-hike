@@ -6,13 +6,8 @@ Rails.application.routes.draw do
   resources :hikes, only: [:index, :create, :update, :destroy]
   get "/me", to: "users#session_user"
   
-  # get "/api/users", to:"users#index"
-  
-
-  # post "/login", to: "sessions#create"
-  # delete "/logout", to: "sessions#destroy"
-
-  resources :sessions, only: [:create, :destroy]
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
   resources :trails, only: [:index, :create, :show]
   end
