@@ -16,6 +16,7 @@ function User(){
     const [hikeToEdit, setHikeToEdit] = useState("")
     
     const params = useParams();
+    console.log(params)
 
     // const profileLoginStatus = user ? user.id === parseInt(params.id, 10) ? true : false : false;
 
@@ -25,7 +26,6 @@ function User(){
                 setProfileLoginStatus(true)
             }
         }
-    
     },[user, params.id])
 
     useEffect(()=>{
@@ -103,10 +103,10 @@ function User(){
                                         updateHikeState={updateHikeState}/>
                                 : 
                                     <div key={"hike"+hike.id} className="hikeCard">
-                                        {/* <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0]["name"]}:</h5>                                     */}
+                                        <h5>{pageUser.trails.filter(trail => hike.trail_id === trail.id)[0]["name"]}:</h5>                                    
                                         {/* <h5>{pageUser.trails.find(trail => trail.id === hike.trail_id)}</h5> */}
                                         {/* {console.log(pageUser.trails[0].name)} */}
-                                        {console.log(pageUser.trails.find(trail => trail.id === hike.trail_id).name)}
+                                        {console.log(mappedTrails.find(trail => trail.id === hike.trail_id))}
                                         
                                         <img src={hike.image} className="userHikeImage" alt="hike"/>
                                          <p>{hike.date}</p>

@@ -95,7 +95,7 @@ function NewHike(){
                 <label>Date:</label>
                     <input type="date" onChange={(e)=>setDate(e.target.value)} value={date}/>
 
-                    <input type="submit"/>
+                    <input type="submit" value="Submit"/>
 
             </form>
             {errors ? 
