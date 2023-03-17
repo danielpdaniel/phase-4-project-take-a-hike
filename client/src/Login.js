@@ -15,7 +15,7 @@ function Login() {
     function handleLoginSubmit(e){
         e.preventDefault()
     
-        fetch("/sessions", {
+        fetch("/api/sessions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ function Login() {
     }
 
     function handleLogout(){
-        fetch("/sessions",{
+        fetch("/api/sessions",{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -54,7 +54,7 @@ function Login() {
             password,
             avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
         }
-        fetch("/users",{
+        fetch("/api/users",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

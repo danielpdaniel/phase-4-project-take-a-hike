@@ -14,7 +14,7 @@ function EditHike(props){
     const [errors, setErrors] = useState("")
 
     useEffect(()=>{
-        fetch("/trails")
+        fetch("/api/trails")
         .then(r=>r.json())
         .then(data => setTrails(data))
     }, [])
@@ -31,7 +31,7 @@ function EditHike(props){
 
         }
 
-        fetch(`/hikes/${props.hikeId}`, {
+        fetch(`/api/hikes/${props.hikeId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -63,9 +63,9 @@ function EditHike(props){
 
 
     return (
-        <div>
+        <div className="hikeCard">
             <h3>Add New Hike!</h3>
-            <form className="newHikeForm" onSubmit={(e)=>handleHikeEdit(e)}>
+            <form  onSubmit={(e)=>handleHikeEdit(e)}>
                 <label>Trail:</label>
                     <select onChange={(e)=>handleTrailChange(e)} value={trails ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
                         <option>Select Trail...</option>

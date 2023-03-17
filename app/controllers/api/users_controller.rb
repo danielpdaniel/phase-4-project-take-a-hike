@@ -1,5 +1,7 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
+
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
+
 # rescue_from ActiveRecord::RecordNotFound, with: :not_found_user_response
 
     def index
@@ -19,7 +21,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     def session_user
         user = User.find_by(id: session[:user_id])
         if user
-            render json: user, status: :ok
+            render json: user, status: :ok, serializer: UserShowAndUpdateSerializer
         else
             render json: {error: "Not Found"}, status: :not_found
         end

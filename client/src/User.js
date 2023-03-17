@@ -28,21 +28,21 @@ function User(){
     },[user, params.id])
 
     useEffect(()=>{
-        fetch(`/users/${params.id}`)
-        .then(r=>{
-            if(r.ok){
-                r.json().then(user=>{
-                    setPageUser(user)
-                    setHikes(user.hikes)
-                    const arr = []
-                    user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
-                    setMappedTrails(arr)
-                        
-                })
-            }else{
-                r.json().then(e=>setErrors(e.error))
-            }
-        })
+            fetch(`/api/users/${params.id}`)
+                    .then(r=>{
+                        if(r.ok){
+                            r.json().then(user=>{
+                                setPageUser(user)
+                                setHikes(user.hikes)
+                                const arr = []
+                                user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                                setMappedTrails(arr)
+                                    
+                            })
+                        }else{
+                            r.json().then(e=>setErrors(e.error))
+                        }
+                    })
     },[params, params.id])
 
     function updateHikeState(hikeData){
@@ -51,7 +51,7 @@ function User(){
     }
 
     function handleDeleteClick(hikeId){
-        fetch(`/hikes/${hikeId}`,{
+        fetch(`/api/hikes/${hikeId}`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -91,7 +91,7 @@ function User(){
                         {hikes ? 
                             hikes.sort((a,b)=> new Date(b.date) - new Date(a.date)).map(hike => 
                                 hikeToEdit === hike.id ?
-                                    <EditHike className="hikeCard" key={"hike"+hike.id} 
+                                    <EditHike key={"hike"+hike.id} 
                                         trailId={hike.trail_id} 
                                         rating={hike.rating} 
                                         notes={hike.notes} 

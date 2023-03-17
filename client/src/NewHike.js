@@ -14,7 +14,7 @@ function NewHike(){
     const [errors, setErrors] = useState("")
 
     useEffect(()=>{
-        fetch("/trails")
+        fetch("/api/trails")
         .then(r=>r.json())
         .then(data => setTrails(data))
     }, [])
@@ -31,7 +31,7 @@ function NewHike(){
 
         }
 
-        fetch("/hikes", {
+        fetch("/api/hikes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

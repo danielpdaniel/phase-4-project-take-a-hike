@@ -10,6 +10,7 @@ import Home from './Home';
 import User from './User';
 import Trails from './Trails';
 import Trail from './Trail';
+import MyProfile from './MyProfile';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <UserProvider>
         <NavBar />
       <Routes>
+        <Route path ="/me" element={<MyProfile />}/>
         <Route path="/trails" element={<Trails/>}/>
         <Route path="/trails/:id" element={<Trail/>}/>
         <Route path="/users/:id" element={<User/>}/>

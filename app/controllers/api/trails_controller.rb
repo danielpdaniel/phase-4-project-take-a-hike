@@ -1,4 +1,4 @@
-class TrailsController < ApplicationController
+class Api::TrailsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_trail_response
 
     def index

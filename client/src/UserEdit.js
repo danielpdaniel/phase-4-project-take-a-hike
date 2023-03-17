@@ -27,7 +27,7 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
             avatar_image: avatar
         }
 
-        fetch(`/users/${pageUser.id}`,{
+        fetch(`/api/users/${pageUser.id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

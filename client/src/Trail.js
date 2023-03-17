@@ -8,7 +8,7 @@ function Trail(){
     const params = useParams()
 
     useEffect(()=>{
-        fetch(`/trails/${params.id}`)
+        fetch(`/api/trails/${params.id}`)
         .then(r=>{
             if(r.ok){
                r.json().then(data => {

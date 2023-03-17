@@ -1,4 +1,4 @@
-class HikesController < ApplicationController
+class Api::HikesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
 
     def index

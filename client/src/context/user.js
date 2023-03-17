@@ -5,7 +5,7 @@ const UserContext = React.createContext();
  function UserProvider({ children }){
     const [user, setUser] = useState(null)
     useEffect(()=>{
-        fetch("/session_user").then((r)=>{
+        fetch("/api/me").then((r)=>{
             if(r.ok){
                 r.json().then(u=>setUser(u))
             }else {
@@ -13,6 +13,7 @@ const UserContext = React.createContext();
                 setUser(null)
             }
         })
+        console.log("testtest")
     },[])
     
     return (

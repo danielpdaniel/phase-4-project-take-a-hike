@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Api::SessionsController < ApplicationController
     
     def create
         user = User.find_by(username: params[:username])
@@ -15,9 +15,13 @@ class SessionsController < ApplicationController
             render json: [], status: :no_content
     end
 
-    # def show
-    #     user = User.find_by(session[:user_id])
-    #     render json: user, status: :ok
-    # end
+    def index
+    user = User.find_by(id: session[:user_id])
+        if user
+            render json: user, status: :ok
+        else
+            render json: {error: "Not Found"}, status: :not_found
+        end
+    end
 
 end

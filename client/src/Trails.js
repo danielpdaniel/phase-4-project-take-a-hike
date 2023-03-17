@@ -14,7 +14,7 @@ function Trails(){
 
 
     useEffect(()=>{
-        fetch("/trails")
+        fetch("/api/trails")
         .then(r=>r.json())
         .then(data => setTrails(data))
     }, [])
@@ -30,7 +30,7 @@ function Trails(){
             distance: distance,
             intensity: intensity
         }
-        fetch("/trails", {
+        fetch("/api/trails", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
