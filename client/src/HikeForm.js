@@ -1,15 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "./context/user";
 
-function NewHike(){
+function HikeForm(props){
 
     const { user } = useContext(UserContext)
-    const [trails, setTrails] = useState("")
-    const [trailId, setTrailId] = useState("")
-    const [rating, setRating] = useState("")
-    const [notes, setNotes] = useState("")
-    const [image, setImage] = useState("")
-    const [date, setDate] = useState("")
+    const [trails, setTrails] = useState()
+    const [trailId, setTrailId] = useState(props.trailId)
+    const [rating, setRating] = useState(props.rating)
+    const [notes, setNotes] = useState(props.notes)
+    const [image, setImage] = useState(props.image)
+    const [date, setDate] = useState(props.date)
 
     const [errors, setErrors] = useState("")
 
@@ -54,6 +54,19 @@ function NewHike(){
 
     }
 
+    function handleHikeEdit(e){
+        e.preventDefault()
+        const postBody = {
+            user_id: user.id,
+            trail_id: trailId,
+            rating: rating,
+            notes: notes,
+            image: image,
+            date: date
+
+        }
+}
+
     function handleTrailChange(e){
         const selectedTrail = e.target.value === "Select Trail..." ? "" : trails.filter(trail => trail.name === e.target.value)[0].id
         setTrailId(selectedTrail)
@@ -65,11 +78,11 @@ function NewHike(){
 
 
     return (
-        <div>
-            <h3>Add New Hike!</h3>
-            <form className="newHikeForm" onSubmit={(e)=>handleHikePostSubmit(e)}>
+        <div className="hikeCard">
+            <h3>{props.heading}</h3>
+            <form className="newHikeForm" onSubmit={(e)=>props.hikeEdit ? handleHikeEdit(e) : handleHikePostSubmit(e)}>
                 <label>Trail:</label>
-                    <select onChange={(e)=>handleTrailChange(e)} value={trailId ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
+                    <select onChange={(e)=>handleTrailChange(e)} value={trails ? trailId ? trails.filter(trail => trail.id === trailId)[0].name : "" : ""}>
                         <option>Select Trail...</option>
                         {trails ? trails.map(trail => <option key={trail.name}>{trail.name}</option>) : <option>loading...</option>}
                     </select>
@@ -96,6 +109,7 @@ function NewHike(){
                     <input type="date" onChange={(e)=>setDate(e.target.value)} value={date}/>
 
                     <input type="submit" value="Submit"/>
+                    {props.hikeEdit ? <button onClick={()=>props.setHikeToEdit("")}>Cancel</button> : null}
 
             </form>
             {errors ? 
@@ -110,4 +124,4 @@ function NewHike(){
     )
 }
 
-export default NewHike
+export default HikeForm

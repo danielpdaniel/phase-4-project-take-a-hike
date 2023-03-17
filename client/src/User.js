@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
 import { useParams } from "react-router-dom";
-import EditHike from "./EditHike";
+// import EditHike from "./EditHike";
+import HikeForm from "./HikeForm";
 import UserEdit from "./UserEdit";
 
 function User(){
@@ -23,11 +24,13 @@ function User(){
         if(user){
             if(user.id === parseInt(params.id, 10)){
                 setProfileLoginStatus(true)
+                setPageUser(user)
+                setHikes(user.hikes)
+                const arr = []
+                user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+                setMappedTrails(arr)
             }
-        }
-    },[user, params.id])
-
-    useEffect(()=>{
+        }else{
             fetch(`/api/users/${params.id}`)
                     .then(r=>{
                         if(r.ok){
@@ -43,7 +46,26 @@ function User(){
                             r.json().then(e=>setErrors(e.error))
                         }
                     })
-    },[params, params.id])
+        }
+    },[user, params.id])
+
+    // useEffect(()=>{
+    //         fetch(`/api/users/${params.id}`)
+    //                 .then(r=>{
+    //                     if(r.ok){
+    //                         r.json().then(user=>{
+    //                             setPageUser(user)
+    //                             setHikes(user.hikes)
+    //                             const arr = []
+    //                             user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+    //                             setMappedTrails(arr)
+                                    
+    //                         })
+    //                     }else{
+    //                         r.json().then(e=>setErrors(e.error))
+    //                     }
+    //                 })
+    // },[params, params.id])
 
     function updateHikeState(hikeData){
         const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
@@ -91,7 +113,8 @@ function User(){
                         {hikes ? 
                             hikes.sort((a,b)=> new Date(b.date) - new Date(a.date)).map(hike => 
                                 hikeToEdit === hike.id ?
-                                    <EditHike key={"hike"+hike.id} 
+                                    <HikeForm key={"hike"+hike.id} 
+                                        heading="Edit Hike:"
                                         trailId={hike.trail_id} 
                                         rating={hike.rating} 
                                         notes={hike.notes} 
@@ -99,7 +122,8 @@ function User(){
                                         date={hike.date} 
                                         hikeId={hike.id} 
                                         setHikeToEdit={setHikeToEdit} 
-                                        updateHikeState={updateHikeState}/>
+                                        updateHikeState={updateHikeState}
+                                        hikeEdit={true}/>
                                 : 
                                     <div key={"hike"+hike.id} className="hikeCard">
                                         <h5>{pageUser.trails.find(trail => trail.id === hike.trail_id) ? pageUser.trails.find(trail => trail.id === hike.trail_id)["name"] : null}</h5>

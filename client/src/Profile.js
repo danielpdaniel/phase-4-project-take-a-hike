@@ -1,4 +1,16 @@
-function Profile(){
+function Profile({PageUser, setPageUser, errors, setErrors, profileLoginStatus, setProfileLoginStatus, userEditStatus, setUserEditStatus}){
+
+    const [pageUser, setPageUser] = useState('')
+    const [errors, setErrors] = useState('')
+    const [profileLoginStatus, setProfileLoginStatus] = useState(false)
+    const [userEditStatus, setUserEditStatus] = useState(false)
+    const {user} = useContext(UserContext)
+    const [mappedTrails, setMappedTrails] = useState([])
+
+    const [hikes, setHikes] = useState("")
+    const [hikeToEdit, setHikeToEdit] = useState("")
+    
+    const params = useParams();
 
 return(
 

@@ -64,7 +64,7 @@ function EditHike(props){
 
     return (
         <div className="hikeCard">
-            <h3>Add New Hike!</h3>
+            <h3>{props.heading}</h3>
             <form  onSubmit={(e)=>handleHikeEdit(e)}>
                 <label>Trail:</label>
                     <select onChange={(e)=>handleTrailChange(e)} value={trails ? trails.filter(trail => trail.id === trailId)[0].name : ""}>
