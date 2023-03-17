@@ -15,7 +15,7 @@
 :root{
   --mainColor: cornsilk;
   --secondaryColor: rgb(66, 119, 71);
-  --tertiaryColor: cornflowerblue;
+  --tertiaryColor: rgb(50, 95, 54);
   --accentColor: chartreuse;
 }
 
@@ -80,13 +80,15 @@ nav a.neverActive {
 } */
 
 .myHikes {
-  width: 30%;
+  width: 70%;
   display: block;
   float: left;
   background-color: var(--tertiaryColor);
   border-radius: 7px;
   padding: 2%;
   margin: 2%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .hikeCard {
@@ -104,13 +106,15 @@ nav a.neverActive {
 }
 
 .myTrails {
-  width: 30%;
+  width: 20%;
   display: block;
-  float: left;
+  float: right;
   background-color: var(--mainColor);
   border-radius: 7px;
   padding: 2%;
   margin: 2%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .myAbout {

@@ -21,7 +21,7 @@ function Trail(){
         })
     },[params.id])
     return(
-        <div>
+        <div className="hikeCard">
             {trail? 
                 <div>
                     <h2>{trail.name}</h2> 
