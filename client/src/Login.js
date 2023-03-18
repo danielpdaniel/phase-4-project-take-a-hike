@@ -10,7 +10,7 @@ function Login() {
     const navigate = useNavigate()
    
 
-    const { user, setUser } = useContext(UserContext)
+    const { user, setUser, setMyHikes } = useContext(UserContext)
 
     function handleLoginSubmit(e){
         e.preventDefault()
@@ -27,7 +27,7 @@ function Login() {
         })
         .then(r=>{
             if(r.ok){
-                r.json().then(setUser)
+                r.json().then(u => {setUser(u); setMyHikes(u.hikes)})
                 setUsername("")
                 setPassword("")
                 navigate("/")
