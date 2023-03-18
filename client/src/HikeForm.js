@@ -65,7 +65,27 @@ function HikeForm(props){
             date: date
 
         }
-}
+
+        fetch(`/api/hikes/${props.hikeId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postBody)
+        })
+        .then(r=>{
+            if(r.ok){
+                r.json().then(data=>{
+                    // console.log(data)
+                    props.updateHikeState(data)
+                })
+                props.setHikeToEdit("")
+            }else {
+                r.json().then(data=> setErrors(data.errors[0]))
+            }
+        })
+
+    }
 
     function handleTrailChange(e){
         const selectedTrail = e.target.value === "Select Trail..." ? "" : trails.filter(trail => trail.name === e.target.value)[0].id
