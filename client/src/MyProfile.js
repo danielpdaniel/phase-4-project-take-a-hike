@@ -11,7 +11,7 @@ function MyProfile(){
     const [errors, setErrors] = useState('')
     // const [profileLoginStatus, setProfileLoginStatus] = useState(false)
     const [userEditStatus, setUserEditStatus] = useState(false)
-    const {user} = useContext(UserContext)
+    const {user, myHikes, setMyHikes} = useContext(UserContext)
     const [mappedTrails, setMappedTrails] = useState([])
 
     const [hikes, setHikes] = useState("")
@@ -46,7 +46,7 @@ function MyProfile(){
         .then(r=>{
             if(r.ok){
                 const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
-                setHikes(filteredHikes)
+                setMyHikes(filteredHikes)
                 const trailsArr = []
                 mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
                 setMappedTrails(trailsArr)
@@ -62,9 +62,9 @@ function MyProfile(){
         setPageUser={setPageUser}
         profileLoginStatus={true}
         mappedTrails={mappedTrails}
-        setMappedTrails={setMappedTrails}
-        hikes={hikes}
+        hikes={myHikes}
         setHikes={setHikes}
+        handleDeleteClick={handleDeleteClick}
         />
 
 

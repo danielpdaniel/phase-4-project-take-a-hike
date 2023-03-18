@@ -4,20 +4,20 @@ const UserContext = React.createContext();
 
  function UserProvider({ children }){
     const [user, setUser] = useState(null)
+    const [myHikes, setMyHikes] = useState(null)
     useEffect(()=>{
         fetch("/api/me").then((r)=>{
             if(r.ok){
-                r.json().then(u=>{setUser(u); console.log(u.hikes); console.log(u.trails); console.log(u)})
+                r.json().then(u=>{setUser(u); setMyHikes(u.hikes)})
             }else {
                 // r.json().then(e=>console.log(e))
                 setUser(null)
             }
         })
     },[])
-    console.log(user ? user.trails : "not user yet")
     
     return (
-        <UserContext.Provider value={{user, setUser}}>
+        <UserContext.Provider value={{user, setUser, myHikes, setMyHikes}}>
             {children}
         </UserContext.Provider>
     );

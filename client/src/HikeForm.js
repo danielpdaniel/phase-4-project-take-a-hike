@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 
 function HikeForm(props){
 
-    const { user } = useContext(UserContext)
+    const { user, myHikes, setMyHikes } = useContext(UserContext)
     const [trails, setTrails] = useState()
     const [trailId, setTrailId] = useState(props.trailId)
     const [rating, setRating] = useState(props.rating)
@@ -40,7 +40,7 @@ function HikeForm(props){
         })
         .then(r=>{
             if(r.ok){
-                // r.json().then(data=>console.log(data))
+                r.json().then(data=>setMyHikes([...myHikes, data]))
                 setErrors("")
                 setTrailId("")
                 setRating("")

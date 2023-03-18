@@ -6,7 +6,7 @@ import HikeForm from "./HikeForm";
 import UserEdit from "./UserEdit";
 
 // function Profile({pageUser, setPageUser, errors, setErrors, profileLoginStatus, setProfileLoginStatus, userEditStatus, setUserEditStatus, UserEdit, hikes, hikeToEdit, EditHike, setHikeToEdit, updateHikeState, handleDeleteClick, mappedTrails, username}){
-    function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, setMappedTrails, hikes, setHikes}){
+    function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes, setHikes, handleDeleteClick}){
 
     // const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
@@ -44,25 +44,25 @@ import UserEdit from "./UserEdit";
         setHikes([...filteredHikes, hikeData])
     }
 
-    function handleDeleteClick(hikeId){
-        fetch(`/api/hikes/${hikeId}`,{
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(r=>{
-            if(r.ok){
-                const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
-                setHikes(filteredHikes)
-                const trailsArr = []
-                mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
-                setMappedTrails(trailsArr)
-            }else{
-                r.json().then(data => setErrors(data))
-            }
-        })
-    }
+    // function handleDeleteClick(hikeId){
+    //     fetch(`/api/hikes/${hikeId}`,{
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     })
+    //     .then(r=>{
+    //         if(r.ok){
+    //             const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
+    //             setHikes(filteredHikes)
+    //             const trailsArr = []
+    //             mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
+    //             setMappedTrails(trailsArr)
+    //         }else{
+    //             r.json().then(data => setErrors(data))
+    //         }
+    //     })
+    // }
 
     return(
 
