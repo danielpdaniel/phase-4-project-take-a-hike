@@ -7,9 +7,14 @@ function Home(){
 
     const { user } = useContext(UserContext)
     return (
-        <div className>
+        <div>
             <h2>Welcome to take a hike!!!</h2>
             {user ? <HikeForm heading="Add New Hike!"/> : <h3>Log In/Signup To Start Hiking!</h3>}
+            {user ? 
+            <div className="timeline">
+                
+            </div>
+            : null}
         </div>
     )
 }
