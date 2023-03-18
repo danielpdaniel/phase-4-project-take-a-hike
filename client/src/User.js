@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // import EditHike from "./EditHike";
 import HikeForm from "./HikeForm";
 import UserEdit from "./UserEdit";
@@ -14,14 +14,18 @@ function User(){
     const {user} = useContext(UserContext)
     const [mappedTrails, setMappedTrails] = useState([])
 
+    const navigate = useNavigate()
+
     const [hikes, setHikes] = useState("")
     const [hikeToEdit, setHikeToEdit] = useState("")
     
     const params = useParams();
 
     useEffect(()=>{
+        const userId = user ? user.id : null
         
-            fetch(`/api/users/${params.id}`)
+            if(parseInt(params.id, 10) !== userId){
+                fetch(`/api/users/${params.id}`)
                     .then(r=>{
                         if(r.ok){
                             r.json().then(u=>{
@@ -35,7 +39,9 @@ function User(){
                         }else{
                             r.json().then(e=>setErrors(e.error))
                         }
-                    })
+                    })}else{
+                        navigate("/my_profile")
+                    }
     },[user, params.id])
 
     function updateHikeState(hikeData){
