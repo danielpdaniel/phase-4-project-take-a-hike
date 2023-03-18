@@ -33,7 +33,7 @@ function MyProfile(){
 
     function updateHikeState(hikeData){
         const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
-        setHikes([...filteredHikes, hikeData])
+        setMyHikes([...filteredHikes, hikeData])
     }
 
     function handleDeleteClick(hikeId){
@@ -65,6 +65,7 @@ function MyProfile(){
         hikes={myHikes}
         setHikes={setHikes}
         handleDeleteClick={handleDeleteClick}
+        updateHikeState={updateHikeState}
         />
 
 

@@ -6,7 +6,7 @@ import HikeForm from "./HikeForm";
 import UserEdit from "./UserEdit";
 
 // function Profile({pageUser, setPageUser, errors, setErrors, profileLoginStatus, setProfileLoginStatus, userEditStatus, setUserEditStatus, UserEdit, hikes, hikeToEdit, EditHike, setHikeToEdit, updateHikeState, handleDeleteClick, mappedTrails, username}){
-    function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes, setHikes, handleDeleteClick}){
+    function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes, setHikes, updateHikeState, handleDeleteClick}){
 
     // const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
@@ -39,10 +39,10 @@ import UserEdit from "./UserEdit";
     //                 })
     // },[user, params.id])
 
-    function updateHikeState(hikeData){
-        const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
-        setHikes([...filteredHikes, hikeData])
-    }
+    // function updateHikeState(hikeData){
+    //     const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
+    //     setMyHikes([...filteredHikes, hikeData])
+    // }
 
     // function handleDeleteClick(hikeId){
     //     fetch(`/api/hikes/${hikeId}`,{
