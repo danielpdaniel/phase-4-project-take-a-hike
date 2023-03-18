@@ -16,7 +16,7 @@ const UserContext = React.createContext();
             }
         })
     },[])
-    console.log(user ? user : null)
+   
     return (
         <UserContext.Provider value={{user, setUser, myHikes, setMyHikes}}>
             {children}

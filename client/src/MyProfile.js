@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 import { useParams } from "react-router-dom";
 // import EditHike from "./EditHike";
 import HikeForm from "./HikeForm";
-import UserEdit from "./UserEdit";
+import UserEdit from "./MyProfileEdit";
 import Profile from "./Profile";
 
 function MyProfile(){

@@ -3,7 +3,7 @@ import { UserContext } from "./context/user";
 import { useParams } from "react-router-dom";
 // import EditHike from "./EditHike";
 import HikeForm from "./HikeForm";
-import UserEdit from "./UserEdit";
+import MyProfileEdit from "./MyProfileEdit";
 
 // function Profile({pageUser, setPageUser, errors, setErrors, profileLoginStatus, setProfileLoginStatus, userEditStatus, setUserEditStatus, UserEdit, hikes, hikeToEdit, EditHike, setHikeToEdit, updateHikeState, handleDeleteClick, mappedTrails, username}){
     function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes, setHikes, updateHikeState, handleDeleteClick}){
@@ -67,7 +67,7 @@ import UserEdit from "./UserEdit";
     return(
 
         <div>
-            {userEditStatus ? <UserEdit pageUser={pageUser} about={pageUser.about} setPageUser={setPageUser} setUserEditStatus={setUserEditStatus}/> : 
+            {userEditStatus ? <MyProfileEdit pageUser={pageUser} about={pageUser.about} setPageUser={setPageUser} setUserEditStatus={setUserEditStatus}/> : 
             <div>
                 <h2>{profileLoginStatus ? `Yahoo! Welcome, ${pageUser.username}` : `Wahoo! It's ${pageUser.username}`}</h2>
                 <img src={pageUser.avatar_image} className="myAvatar" alt={`${pageUser.username} avatar`}/>

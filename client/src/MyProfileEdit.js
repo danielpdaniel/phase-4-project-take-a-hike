@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}){
+function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}){
     const [about, setAbout] = useState(pageUser.about)
     const [avatar, setAvatar] = useState(pageUser.avatar_image)
     const [username, setUsername] = useState(pageUser.username)
@@ -66,4 +66,4 @@ function UserEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}
     )
 }
 
-export default UserEdit
+export default MyProfileEdit

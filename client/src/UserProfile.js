@@ -3,10 +3,10 @@ import { UserContext } from "./context/user";
 import { useParams, useNavigate } from "react-router-dom";
 // import EditHike from "./EditHike";
 import HikeForm from "./HikeForm";
-import UserEdit from "./UserEdit";
+import UserEdit from "./MyProfileEdit";
 import Profile from "./Profile";
 
-function User(){
+function UserProfile(){
     const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
@@ -23,7 +23,7 @@ function User(){
 
     useEffect(()=>{
         const userId = user ? user.id : null
-        
+
             if(parseInt(params.id, 10) !== userId){
                 fetch(`/api/users/${params.id}`)
                     .then(r=>{
@@ -71,6 +71,9 @@ function User(){
 
     return(
 
+        errors ? 
+            <h4>{errors}</h4>
+        :
         <Profile 
         pageUser={pageUser}
         setPageUser={setPageUser}
@@ -146,4 +149,4 @@ function User(){
     )
 }
 
-export default User
+export default UserProfile
