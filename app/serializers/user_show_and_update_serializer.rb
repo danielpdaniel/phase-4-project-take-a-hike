@@ -3,8 +3,4 @@ class UserShowAndUpdateSerializer < ActiveModel::Serializer
 
   has_many :hikes
   has_many :trails
-
-  # def user_hikes
-  #   self.object.hikes, serializer: HikeSerializer
-  # end
 end

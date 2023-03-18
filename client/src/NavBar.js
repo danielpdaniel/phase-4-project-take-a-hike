@@ -21,7 +21,7 @@ function NavBar(){
             <NavLink to="/" className="neverActive"><img src={logo} id="logo" alt="take a hike smiling sun with shades"/></NavLink>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/trails">Trails</NavLink>
-            {user ? <NavLink to={`/users/${user.id}`}>My Page</NavLink>: null}
+            {user ? <NavLink to={`my_profile`}>My Page</NavLink>: null}
             {user ? <button onClick={()=>handleLogout()}>Logout</button>: <NavLink to="/login">Login</NavLink>}
         </nav>
     )

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import HikeForm from "./HikeForm";
 import UserEdit from "./UserEdit";
 
-function User(){
+function MyProfile(){
     const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
     const [profileLoginStatus, setProfileLoginStatus] = useState(false)
@@ -21,35 +21,14 @@ function User(){
     // const profileLoginStatus = user ? user.id === parseInt(params.id, 10) ? true : false : false;
 
     useEffect(()=>{
-        if(user){
-            if(user.id === parseInt(params.id, 10)){
-                setProfileLoginStatus(true)
-                setPageUser(user)
-                setHikes(user.hikes)
-                const arr = []
-               console.log(user.trails)
-               user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
-                // const mappytime = user ? user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail)) : null
-                setMappedTrails(arr)
-            }
-        }else{
-            fetch(`/api/users/${params.id}`)
-                    .then(r=>{
-                        if(r.ok){
-                            r.json().then(u=>{
-                                setPageUser(u)
-                                setHikes(u.hikes)
-                                const arr = []
-                                u.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
-                                setMappedTrails(arr)
-                                    
-                            })
-                        }else{
-                            r.json().then(e=>setErrors(e.error))
-                        }
-                    })
-        }
-    },[user, params.id])
+       if(user){
+        setPageUser(user)
+        setHikes(user.hikes)
+        const arr = []
+        user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
+        setMappedTrails(arr)
+       }
+    }, [user])
 
     function updateHikeState(hikeData){
         const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
@@ -143,4 +122,4 @@ function User(){
     )
 }
 
-export default User
+export default MyProfile

@@ -7,7 +7,7 @@ const UserContext = React.createContext();
     useEffect(()=>{
         fetch("/api/me").then((r)=>{
             if(r.ok){
-                r.json().then(u=>{setUser(u); console.log(u)})
+                r.json().then(u=>{setUser(u); console.log(u.hikes); console.log(u.trails); console.log(u)})
             }else {
                 // r.json().then(e=>console.log(e))
                 setUser(null)
