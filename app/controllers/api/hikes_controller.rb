@@ -57,17 +57,11 @@ class Api::HikesController < ApplicationController
     end
 
     def authorize
-     
         if session.include? :user_id
-            if hike_params.include? :user_id
-            byebug
-            end
+           nil
         else
             return render json: {error: "unauthorized user"}, status: :unauthorized
         end
-
-    #    return render json: {error: "unauthorized user"}, status: :unauthorized unless session.include? :user_id 
-
     end
     
 end
