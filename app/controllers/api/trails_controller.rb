@@ -1,6 +1,6 @@
 class Api::TrailsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_trail_response
-
+skip_before_action :authorize, only: [:index, :show]
     def index
         trails = Trail.all
         render json: trails, status: :ok

@@ -1,6 +1,6 @@
 class Api::HikesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
-    before_action :authorize
+    # before_action :authorize
     skip_before_action :authorize, only: [:index]
 
     def index
@@ -9,6 +9,7 @@ class Api::HikesController < ApplicationController
     end
 
     def create
+        byebug
         hike = @user.hikes.create!(hike_params)
 
         if hike
@@ -29,7 +30,6 @@ class Api::HikesController < ApplicationController
                 render json: hike, status: :accepted
             end
         else
-            byebug
             render json: {error: "unauthorized user"}, status: :unauthorized
         end
     end
