@@ -1,5 +1,7 @@
 class Api::HikesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
+    before_action :authorize
+    skip_before_action :authorize, only: [:index]
 
     def index
         hikes = Hike.all
@@ -7,7 +9,7 @@ class Api::HikesController < ApplicationController
     end
 
     def create
-        if session[:user_id] == hike_params[:user_id]
+        if session[:user_id] === hike_params[:user_id]
         hike = Hike.create!(hike_params)
             if hike.valid?
                 render json: hike, status: :created
@@ -18,11 +20,12 @@ class Api::HikesController < ApplicationController
     end
 
     def update
-        hike = Hike.find_by(id: params[:id])
-
-        if session[:user_id] === hike.user_id
-            hike.update!(hike_params)
+        user = User.find_by(id: session[:user_id])
+        hike = user.hikes.find_by(id: params[:id])
         
+        # if session[:user_id] === hike.user_id
+        if hike
+            hike.update!(hike_params)
             if hike.valid?
                 render json: hike, status: :accepted
             end
@@ -32,6 +35,7 @@ class Api::HikesController < ApplicationController
     end
 
     def destroy
+        user = User.find_by(id: session[:user_id])
         hike = Hike.find_by(id: params[:id])
 
         if session[:user_id] === hike.user_id
@@ -50,6 +54,20 @@ class Api::HikesController < ApplicationController
 
     def invalid_hike_response(invalid)
         render json: { errors: [invalid.record.errors]}, status: :unprocessable_entity
+    end
+
+    def authorize
+     
+        if session.include? :user_id
+            if hike_params.include? :user_id
+            byebug
+            end
+        else
+            return render json: {error: "unauthorized user"}, status: :unauthorized
+        end
+
+    #    return render json: {error: "unauthorized user"}, status: :unauthorized unless session.include? :user_id 
+
     end
     
 end
