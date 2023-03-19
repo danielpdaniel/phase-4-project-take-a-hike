@@ -9,7 +9,6 @@ class Api::HikesController < ApplicationController
     end
 
     def create
-        byebug
         hike = @user.hikes.create!(hike_params)
 
         if hike

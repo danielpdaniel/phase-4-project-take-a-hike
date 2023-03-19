@@ -10,21 +10,21 @@ function MyProfile(){
     const [pageUser, setPageUser] = useState('')
     const [errors, setErrors] = useState('')
     // const [profileLoginStatus, setProfileLoginStatus] = useState(false)
-    const [userEditStatus, setUserEditStatus] = useState(false)
+    // const [userEditStatus, setUserEditStatus] = useState(false)
     const {user, myHikes, setMyHikes} = useContext(UserContext)
     const [mappedTrails, setMappedTrails] = useState([])
 
-    const [hikes, setHikes] = useState("")
-    const [hikeToEdit, setHikeToEdit] = useState("")
+    // const [hikes, setHikes] = useState("")
+    // const [hikeToEdit, setHikeToEdit] = useState("")
     
-    const params = useParams();
+    // const params = useParams();
 
     // const profileLoginStatus = user ? user.id === parseInt(params.id, 10) ? true : false : false;
 
     useEffect(()=>{
        if(user){
         setPageUser(user)
-        setHikes(user.hikes)
+        // setHikes(user.hikes)
         const arr = []
         user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
         setMappedTrails(arr)
@@ -32,11 +32,12 @@ function MyProfile(){
     }, [user])
 
     function updateHikeState(hikeData){
-        const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
+        const filteredHikes = myHikes.filter(hike => hike.id !== hikeData.id)
         setMyHikes([...filteredHikes, hikeData])
     }
 
     function handleDeleteClick(hikeId){
+        console.log("clicked!")
         fetch(`/api/hikes/${hikeId}`,{
             method: "DELETE",
             headers: {
@@ -45,7 +46,8 @@ function MyProfile(){
         })
         .then(r=>{
             if(r.ok){
-                const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
+                console.log(hikeId)
+                const filteredHikes = myHikes.filter(hike => hike.id !== hikeId)
                 setMyHikes(filteredHikes)
                 const trailsArr = []
                 mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
@@ -63,7 +65,7 @@ function MyProfile(){
         profileLoginStatus={true}
         mappedTrails={mappedTrails}
         hikes={myHikes}
-        setHikes={setHikes}
+        setHikes={setMyHikes}
         handleDeleteClick={handleDeleteClick}
         updateHikeState={updateHikeState}
         />
