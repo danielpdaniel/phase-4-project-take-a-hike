@@ -20,50 +20,6 @@ import MyProfileEdit from "./MyProfileEdit";
     
     const params = useParams();
 
-    // useEffect(()=>{
-        
-    //         fetch(`/api/users/${params.id}`)
-    //                 .then(r=>{
-    //                     if(r.ok){
-    //                         r.json().then(u=>{
-    //                             setPageUser(u)
-    //                             setHikes(u.hikes)
-    //                             const arr = []
-    //                             u.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
-    //                             setMappedTrails(arr)
-                                    
-    //                         })
-    //                     }else{
-    //                         r.json().then(e=>setErrors(e.error))
-    //                     }
-    //                 })
-    // },[user, params.id])
-
-    // function updateHikeState(hikeData){
-    //     const filteredHikes = hikes.filter(hike => hike.id !== hikeData.id)
-    //     setMyHikes([...filteredHikes, hikeData])
-    // }
-
-    // function handleDeleteClick(hikeId){
-    //     fetch(`/api/hikes/${hikeId}`,{
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     })
-    //     .then(r=>{
-    //         if(r.ok){
-    //             const filteredHikes = hikes.filter(hike => hike.id !== hikeId)
-    //             setHikes(filteredHikes)
-    //             const trailsArr = []
-    //             mappedTrails.map(trail => filteredHikes.find(hike => hike.trail_id === trail.id) ? trailsArr.push(trail) : null)
-    //             setMappedTrails(trailsArr)
-    //         }else{
-    //             r.json().then(data => setErrors(data))
-    //         }
-    //     })
-    // }
-
     return(
 
         <div>
