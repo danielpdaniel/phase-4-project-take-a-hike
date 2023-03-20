@@ -16,7 +16,7 @@ function Trail(){
                 const arr = []
                 data.users.map(u => arr.find(arrUser => arrUser.id === u.id) ? null : arr.push(u))
                 setUsers(arr)
-            })
+                })
             }
         })
     },[params.id])
