@@ -53,7 +53,7 @@ function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes
                                             : null}
                                     </div>)
                         : 
-                            <h5>Loading...</h5>}
+                            <h5>This user's ready to take a hike! :)</h5>}
                 </div>
 
                 <div className="myTrails">

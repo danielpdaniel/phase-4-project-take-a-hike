@@ -47,6 +47,7 @@ function Login() {
         .then(r=>{
             if(r.ok){
                 setUser(null)
+                setMyHikes(null)
                 navigate("/")
             }
         })
@@ -68,7 +69,7 @@ function Login() {
         })
         .then(r=>{
             if(r.ok){
-                r.json().then(setUser)
+                r.json().then(u => {setUser(u); setMyHikes(u.hikes)})
                 navigate("/")
             } else {
                 r.json().then(e => setErrors(e.errors[0]))
