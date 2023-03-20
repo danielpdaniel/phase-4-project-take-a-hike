@@ -63,13 +63,13 @@ nav a.neverActive {
   padding: 0px;
 }
 
-.newTrailForm {
+/* .newTrailForm {
   max-width: 10%;
   display:block;
   margin: auto;
   float:left;
   /* position: relative; */
-}
+/* } */ 
 
 .loginForm{
   max-width: 10%;
@@ -91,7 +91,7 @@ nav a.neverActive {
   margin-right: 0;
 }
 
-.hikeCard {
+.hikeCard, .newTrailForm {
   background-color: var(--mainColor);
   padding: 5%;
   padding-top: 3%;

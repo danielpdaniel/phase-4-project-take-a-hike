@@ -49,7 +49,7 @@ function Trails(){
                     setIntensity("")
                 })
             }else{
-                r.json().then(data=>setErrors(data.errors))
+                r.json().then(data=>{setErrors(data.errors); console.log(data.errors[0])})
             }
         })
     }
@@ -63,27 +63,28 @@ function Trails(){
             <ul>
             {trails ? trails.map(trail=><li key={trail.id}><NavLink to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
             </ul>
-
+        <div>
             <h2>Add New Trail:</h2>
             <form className="newTrailForm" onSubmit={(e)=>handleSubmit(e)}>
-                <label>Name: </label>
-                    <input type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
-                <label>Location: </label>
-                    <input type="text" onChange={(e)=>setLocation(e.target.value)} value={location}/>
-                <label>Description: </label>
-                    <textarea onChange={(e)=>setDescription(e.target.value)} value={description}/>
-                <label>Image link: </label>
-                    <input type="text" onChange={(e)=>setImage(e.target.value)} value={image}/>
-                <label>Distance (miles): </label>
-                    <input type="text" onChange={(e)=>setDistance(e.target.value)} value={distance}/>
-                <label>Intensity (out of 10): </label>
-                    <input type="text" onChange={(e)=>setIntensity(e.target.value)} value={intensity}/>
+                <label htmlFor="name">Name: </label>
+                    <input name="name" type="text" onChange={(e)=>setName(e.target.value)} value={name}/>
+                <label htmlFor="location">Location: </label>
+                    <input name="location" type="text" onChange={(e)=>setLocation(e.target.value)} value={location}/>
+                <label htmlFor="description">Description: </label>
+                    <textarea name="description" onChange={(e)=>setDescription(e.target.value)} value={description}/>
+                <label htmlFor="imageLink">Image link: </label>
+                    <input name="imageLink" type="text" onChange={(e)=>setImage(e.target.value)} value={image}/>
+                <label htmlFor="distance">Distance (miles): </label>
+                    <input name="distance" type="text" onChange={(e)=>setDistance(e.target.value)} value={distance}/>
+                <label htmlFor="intensity">Intensity (out of 10): </label>
+                    <input name="intensity" type="text" onChange={(e)=>setIntensity(e.target.value)} value={intensity}/>
                     <input type="submit"/>
             </form>
+        </div>
             {errors ? <div><h4>Error!</h4> {errors.map(errorObj => 
-                <div>
+                <div key={"wee"}>
                     {Object.keys(errorObj).map(key => 
-                        <div>
+                        <div key={key}>
                             <h5>{key}: </h5>
                             {errorObj[key].map(error => <li key={errorObj+error}>{error}</li>)}
                         </div>)}
