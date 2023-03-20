@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
 import Profile from "./Profile";
-import { useNavigate } from "react-router-dom";
 
 function MyProfile(){
     const [pageUser, setPageUser] = useState('')
     const {user, myHikes, setMyHikes} = useContext(UserContext)
     const [mappedTrails, setMappedTrails] = useState([])
-    const navigate = useNavigate()
 
     useEffect(()=>{
        if(user){
