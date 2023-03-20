@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
-
+skip_before_action :authorize, only: [:index, :show, :create]
 # rescue_from ActiveRecord::RecordNotFound, with: :not_found_user_response
 
     def index
@@ -19,9 +19,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     end
 
     def session_user
-        user = User.find_by(id: session[:user_id])
-        if user
-            render json: user, status: :ok, serializer: UserShowAndUpdateSerializer
+        if @user
+            render json: @user, status: :ok, serializer: UserShowAndUpdateSerializer
         else
             render json: {error: "Not Found"}, status: :not_found
         end
@@ -37,17 +36,11 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_user_response
     end
 
     def update
-        user = User.find_by(id: params[:id])
-
-        if session[:user_id] === user.id
+        user = @user
         user.update!(user_params)
-
-            if user.valid?
-                render json: user, status: :accepted, serializer: UserShowAndUpdateSerializer
-            end
-            
+        if user.valid?
+            render json: user, status: :accepted, serializer: UserShowAndUpdateSerializer
         end
-
     end
 
     private

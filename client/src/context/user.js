@@ -5,7 +5,7 @@ const UserContext = React.createContext();
  function UserProvider({ children }){
     const [user, setUser] = useState(null)
     const [myHikes, setMyHikes] = useState(null)
-    const [myTrails, setMyTrails] = useState(null)
+   
     useEffect(()=>{
         fetch("/api/me").then((r)=>{
             if(r.ok){

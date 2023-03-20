@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/user";
-import { useParams } from "react-router-dom";
-// import EditHike from "./EditHike";
-import HikeForm from "./HikeForm";
-import UserEdit from "./MyProfileEdit";
 import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 
 function MyProfile(){
     const [pageUser, setPageUser] = useState('')
@@ -13,6 +10,7 @@ function MyProfile(){
     // const [userEditStatus, setUserEditStatus] = useState(false)
     const {user, myHikes, setMyHikes} = useContext(UserContext)
     const [mappedTrails, setMappedTrails] = useState([])
+    const navigate = useNavigate()
 
     // const [hikes, setHikes] = useState("")
     // const [hikeToEdit, setHikeToEdit] = useState("")
@@ -26,8 +24,11 @@ function MyProfile(){
         setPageUser(user)
         // setHikes(user.hikes)
         const arr = []
+        // if(user.trails)
         user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
         setMappedTrails(arr)
+       }else{
+        navigate("/")
        }
     }, [user])
 
@@ -37,7 +38,6 @@ function MyProfile(){
     }
 
     function handleDeleteClick(hikeId){
-        console.log("clicked!")
         fetch(`/api/hikes/${hikeId}`,{
             method: "DELETE",
             headers: {
@@ -46,7 +46,6 @@ function MyProfile(){
         })
         .then(r=>{
             if(r.ok){
-                console.log(hikeId)
                 const filteredHikes = myHikes.filter(hike => hike.id !== hikeId)
                 setMyHikes(filteredHikes)
                 const trailsArr = []
@@ -59,6 +58,7 @@ function MyProfile(){
     }
 
     return(
+        
         <Profile 
         pageUser={pageUser}
         setPageUser={setPageUser}

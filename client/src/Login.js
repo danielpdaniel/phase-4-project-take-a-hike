@@ -44,6 +44,12 @@ function Login() {
                 "Content-Type": "application/json"
             }
         })
+        .then(r=>{
+            if(r.ok){
+                setUser(null)
+                navigate("/")
+            }
+        })
         setUser(null)
     }
 
@@ -52,7 +58,7 @@ function Login() {
         const user = {
             username,
             password,
-            avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
+            // avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
         }
         fetch("/api/users",{
             method: "POST",
@@ -64,6 +70,7 @@ function Login() {
         .then(r=>{
             if(r.ok){
                 r.json().then(setUser)
+                navigate("/")
             } else {
                 r.json().then(e => setErrors(e.errors[0]))
             }

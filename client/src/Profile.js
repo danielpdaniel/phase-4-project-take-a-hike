@@ -98,10 +98,8 @@ import MyProfileEdit from "./MyProfileEdit";
                                         hikeEdit={true}/>
                                 : 
                                     <div key={"hike"+hike.id} className="hikeCard">
-                                        {console.log(hike.trail_id)}
-                                        {/* <h5>{pageUser.trails ? pageUser.trails.find(hike.trail_id) : null}</h5> */}
-                                        {/* {pageUser ? pageUser.trails.find(trail => trail.id === hike.trail_id)["name"] : null} */}
                                         {<h5>{pageUser.trails.find(trail => trail.id === hike.trail_id) ?  pageUser.trails.find(trail => trail.id === hike.trail_id).name : null }</h5>}
+                                        {/* <h5>{pageUser.trails ? pageUser.trails.find(trail => trail.id === hike.trail_id).name : null}</h5> */}
                                         <img src={hike.image} className="userHikeImage" alt="hike"/>
                                          <p>{hike.date}</p>
                                          <p>{hike.rating >= 1 ? "★" : "☆"}{hike.rating >= 2 ? "★" : "☆"}{hike.rating >= 3 ? "★" : "☆"}{hike.rating >= 4 ? "★" : "☆"}{hike.rating >= 5 ? "★" : "☆"}</p>
