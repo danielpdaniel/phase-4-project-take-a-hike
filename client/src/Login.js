@@ -50,7 +50,6 @@ function Login() {
                 navigate("/")
             }
         })
-        setUser(null)
     }
 
     function handleSignup(e){
@@ -58,7 +57,7 @@ function Login() {
         const user = {
             username,
             password,
-            // avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
+            avatar_image: "https://i.postimg.cc/mknKLgV0/take-a-hike-default-avatar-copy.png"
         }
         fetch("/api/users",{
             method: "POST",
