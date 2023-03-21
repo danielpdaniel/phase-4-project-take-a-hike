@@ -25,7 +25,7 @@ function Profile({pageUser, setPageUser, profileLoginStatus, mappedTrails, hikes
                 <div className="myHikes">
                     <h4>My Hikes:</h4>
                         {hikes ? 
-                            hikes.sort((a,b)=> new Date(b.date) - new Date(a.date)).map(hike => 
+                            hikes.map(hike => 
                                 hikeToEdit === hike.id ?
                                     <HikeForm key={"hike"+hike.id} 
                                         heading="Edit Hike:"
