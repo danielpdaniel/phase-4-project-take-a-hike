@@ -4,6 +4,7 @@ class Api::HikesController < ApplicationController
     skip_before_action :authorize, only: [:index]
 
     def index
+        byebug
         hikes = Hike.all
         render json: hikes, status: :ok
     end
@@ -36,7 +37,7 @@ class Api::HikesController < ApplicationController
     def destroy
         hike = @user.hikes.find_by(id: params[:id])
 
-        if session[:user_id] === hike.user_id
+        if session[:user_id] === hike&.user_id
             hike.destroy!
             render json: [], status: :no_content
         else
