@@ -32,7 +32,7 @@ function Login() {
                 setPassword("")
                 navigate("/")
             } else {
-                r.json().then(e => setErrors(e.error))
+                r.json().then(e => console.log(setErrors(e.errors)))
             }
         })
     }
@@ -96,7 +96,15 @@ function Login() {
                 </div>}
             </form> : null}
 
-            {errors ? <div><h4>Error!</h4>{Object.keys(errors).map(key => <h4 key={key+errors[key]}>{key}: {errors[key]}</h4>)}</div> : null}
+            {errors ? 
+            <div>
+                <h3>Error!</h3>
+                <ul>
+                    {errors.map(error => 
+                        <li>{error}</li>)}
+                </ul>
+            </div> 
+            : null}
         </div>
     )
 }

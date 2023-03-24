@@ -5,6 +5,7 @@ function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditSt
     const [avatar, setAvatar] = useState(pageUser.avatar_image)
     const [username, setUsername] = useState(pageUser.username)
     const [errors, setErrors] = useState("")
+    console.log(errors)
 
     function handleAboutChange(e){
         setAbout(e.target.value)
@@ -41,7 +42,7 @@ function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditSt
                 setUserEditStatus(false)
             })
             }else {
-                r.json().then(e => setErrors(e.errors))
+                r.json().then(e => setErrors(e.errors[0]))
             }
         // .then(data=>{
         //     setPageUser(data);
@@ -61,7 +62,15 @@ function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditSt
                     <textarea value={about} onChange={(e)=>handleAboutChange(e)}/>
                 </div>
                 <input type="submit" value="Submit Changes"/>
-                {errors ? errors.map(error => Object.keys(error).map(errorKey => <h3 key={`${errorKey}${error[errorKey]}`}>{errorKey}: {error[errorKey]}</h3>)) : null}
+                {errors ? 
+                <div>
+                    <h3>Error!</h3>
+                    <ul>
+                        {errors.map(error => 
+                        <li key={error}>{error}</li>)}
+                    </ul>
+                </div> 
+                    : null}
         </form>
     )
 }

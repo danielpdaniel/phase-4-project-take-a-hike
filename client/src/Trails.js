@@ -12,7 +12,6 @@ function Trails(){
     const [distance, setDistance] = useState("")
     const [intensity, setIntensity] = useState("")
 
-
     useEffect(()=>{
         fetch("/api/trails")
         .then(r=>r.json())
@@ -49,7 +48,7 @@ function Trails(){
                     setIntensity("")
                 })
             }else{
-                r.json().then(data=>{setErrors(data.errors); console.log(data.errors[0])})
+                r.json().then(e => setErrors(e.errors[0]))
             }
         })
     }
@@ -81,17 +80,15 @@ function Trails(){
                     <input type="submit"/>
             </form>
         </div>
-            {errors ? <div><h4>Error!</h4> {errors.map(errorObj => 
-                <div key={"wee"}>
-                    {Object.keys(errorObj).map(key => 
-                        <div key={key}>
-                            <h5>{key}: </h5>
-                            {errorObj[key].map(error => <li key={errorObj+error}>{error}</li>)}
-                        </div>)}
-                </div>
-            )}</div>
-            : 
-            null}
+            {errors ? 
+            <div>
+                <h3>Error!</h3>
+                    <ul>{errors.map(error => 
+                        <li key={error}>{error}</li>)}
+                    </ul>
+            </div>
+                : 
+                null}
         </div>
     )
 }
