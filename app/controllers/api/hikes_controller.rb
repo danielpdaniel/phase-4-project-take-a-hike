@@ -1,10 +1,9 @@
 class Api::HikesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
-    # before_action :authorize
+  
     skip_before_action :authorize, only: [:index]
 
     def index
-        byebug
         hikes = Hike.all
         render json: hikes, status: :ok
     end
@@ -53,11 +52,6 @@ class Api::HikesController < ApplicationController
 
     def invalid_hike_response(invalid)
         render json: { errors: [invalid.record.errors]}, status: :unprocessable_entity
-    end
-
-    def authorize
-        @user = User.find_by(id: session[:user_id]) 
-        return render json: {error: "unauthorized user"}, status: :unauthorized unless session.include? :user_id
     end
     
 end
