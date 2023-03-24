@@ -48,7 +48,7 @@ function HikeForm(props){
                 setImage("")
                 setNotes("")
             }else {
-                r.json().then(data=> setErrors(data.errors[0]))
+                r.json().then(e => setErrors(e.errors))
             }
         })
 
@@ -81,7 +81,7 @@ function HikeForm(props){
                 })
                 props.setHikeToEdit("")
             }else {
-                r.json().then(data=> setErrors(data.errors[0]))
+                r.json().then(e => setErrors(e.errors))
             }
         })
 
@@ -134,11 +134,10 @@ function HikeForm(props){
             </form>
             {errors ? 
             <div>
-                <h4>Error!</h4>
-                {Object.keys(errors).map(key => 
-                <h4 key={key+errors[key]}>
-                    {key}: {errors[key].length > 1 ? errors[key].map(error => error === errors[key][errors[key].length - 1] ? error : `${error}, `) : errors[key] }
-                </h4>)}
+                <h3>Error!</h3>
+                    <ul>
+                        {errors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
             </div> : null}
         </div>
     )

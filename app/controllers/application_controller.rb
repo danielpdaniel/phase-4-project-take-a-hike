@@ -4,7 +4,8 @@ class ApplicationController < ActionController::API
 
   def authorize
     @user = User.find_by(id: session[:user_id]) 
-    return render json: {error: "unauthorized user"}, status: :unauthorized unless session.include? :user_id
+   
+    return render json: {errors: ["unauthorized user"]}, status: :unauthorized unless session.include? :user_id
 end
 
 end

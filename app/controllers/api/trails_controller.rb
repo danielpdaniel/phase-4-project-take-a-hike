@@ -30,6 +30,6 @@ skip_before_action :authorize, only: [:index, :show]
     end
 
     def invalid_trail_response(invalid)
-        render json: {errors: [invalid.record.errors.full_messages]}, status: :unprocessable_entity
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
 end

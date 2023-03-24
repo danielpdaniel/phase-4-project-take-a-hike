@@ -42,7 +42,7 @@ function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditSt
                 setUserEditStatus(false)
             })
             }else {
-                r.json().then(e => setErrors(e.errors[0]))
+                r.json().then(e => setErrors(e.errors))
             }
         // .then(data=>{
         //     setPageUser(data);

@@ -32,7 +32,7 @@ function Login() {
                 setPassword("")
                 navigate("/")
             } else {
-                r.json().then(e => console.log(setErrors(e.errors)))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }
@@ -72,7 +72,7 @@ function Login() {
                 r.json().then(u => {setUser(u); setMyHikes(u.hikes)})
                 navigate("/")
             } else {
-                r.json().then(e => setErrors(e.errors[0]))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }

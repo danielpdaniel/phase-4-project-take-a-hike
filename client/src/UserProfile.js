@@ -31,7 +31,7 @@ function UserProfile(){
                                     
                             })
                         }else{
-                            r.json().then(e=>setErrors(e.error))
+                            r.json().then(e => setErrors(e.error))
                         }
                     })}else{
                         navigate("/my_profile")

@@ -48,7 +48,7 @@ function Trails(){
                     setIntensity("")
                 })
             }else{
-                r.json().then(e => setErrors(e.errors[0]))
+                r.json().then(e => setErrors(e.errors))
             }
         })
     }
@@ -56,9 +56,6 @@ function Trails(){
     return(
         <div>
             <h2>All Trails:</h2>
-            {/* <ul>
-                {trails ? trails.map(trail=><li key={trail.id}>{trail.name}</li>): <li>Loading...</li>}
-            </ul> */}
             <ul>
             {trails ? trails.map(trail=><li key={trail.id}><NavLink to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
             </ul>
