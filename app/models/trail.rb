@@ -1,6 +1,8 @@
 class Trail < ApplicationRecord
+
     has_many :hikes
     has_many :users, through: :hikes
+
 
     validates :name, presence: true
     validates :location, presence: true
@@ -8,4 +10,10 @@ class Trail < ApplicationRecord
     validates :image, presence: true
     validates :distance, presence: true, numericality: true
     validates :intensity, presence: true, numericality: {greater_than: 0, less_than_or_equal_to: 10}
+
+    def self.order_by_hike_count
+        trails = self.all
+        byebug
+    end
+
 end

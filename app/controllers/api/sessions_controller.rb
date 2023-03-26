@@ -12,17 +12,8 @@ class Api::SessionsController < ApplicationController
     end
 
     def destroy
-            session[:user_id] = nil
-            render json: [], status: :no_content
+            session.delete :user_id
+            render json: [], status: :no_contents
     end
-
-    # def index
-    # user = User.find_by(id: session[:user_id])
-    #     if user
-    #         render json: user, status: :ok
-    #     else
-    #         render json: {error: "Not Found"}, status: :not_found
-    #     end
-    # end
 
 end
