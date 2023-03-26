@@ -1,5 +1,6 @@
 class Api::HikesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found_hike_response
   
     skip_before_action :authorize, only: [:index]
 
@@ -11,37 +12,27 @@ class Api::HikesController < ApplicationController
     def create
         hike = @user.hikes.create!(hike_params)
 
-        if hike
-            if hike.valid?
+        if hike&.valid?
                 render json: hike, status: :created
-            end
         else 
             render json: {error: "unauthorized user"}, status: :unauthorized
         end
     end
 
     def update
-        hike = @user.hikes.find_by(id: params[:id])
+        hike = @user.hikes.find_by!(id: params[:id])
         
-        if hike
-            hike.update!(hike_params)
-            if hike.valid?
-                render json: hike, status: :accepted
-            end
-        else
-            render json: {error: "unauthorized user"}, status: :unauthorized
-        end
+        hike.update!(hike_params)
+
+        render json: hike, status: :accepted
     end
 
     def destroy
-        hike = @user.hikes.find_by(id: params[:id])
+        hike = @user.hikes.find_by!(id: params[:id])
 
-        if session[:user_id] === hike&.user_id
-            hike.destroy!
-            render json: [], status: :no_content
-        else
-            render json: {error: "unauthorized user"}, status: :unauthorized
-        end
+        hike.destroy!
+        
+        render json: [], status: :no_content
     end
 
     private
@@ -54,4 +45,7 @@ class Api::HikesController < ApplicationController
         render json: { errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
     
+    def not_found_hike_response
+        render json: {error: "hike not found"}, status: :not_found
+    end
 end
