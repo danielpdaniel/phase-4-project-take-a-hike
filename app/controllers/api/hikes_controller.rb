@@ -1,4 +1,5 @@
 class Api::HikesController < ApplicationController
+    
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_hike_response
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_hike_response
   

@@ -1,6 +1,8 @@
 class Api::TrailsController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :invalid_trail_response
-skip_before_action :authorize, only: [:index, :show]
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_trail_response
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found_trail_response
+
+    skip_before_action :authorize, only: [:index, :show]
 
     def index
         trails = Trail.all
@@ -15,12 +17,9 @@ skip_before_action :authorize, only: [:index, :show]
     end
 
     def show
-        trail = Trail.find_by(id: params[:id])
-        if trail.valid?
-            render json: trail, status: :ok, serializer: TrailShowSerializer
-        else
-            render json: {error: "trail not found"}, status: :invalid
-        end
+        trail = Trail.find_by!(id: params[:id])
+
+        render json: trail, status: :ok, serializer: TrailShowSerializer
     end
 
     private
@@ -32,5 +31,9 @@ skip_before_action :authorize, only: [:index, :show]
 
     def invalid_trail_response(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def not_found_trail_response
+        render json: { error: "Trail Not Found" }, status: :not_found
     end
 end
