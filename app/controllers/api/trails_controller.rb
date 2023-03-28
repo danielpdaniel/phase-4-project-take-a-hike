@@ -22,6 +22,13 @@ class Api::TrailsController < ApplicationController
         render json: trail, status: :ok, serializer: TrailShowSerializer
     end
 
+    def hiked_trails
+# byebug
+        trails = Trail.all.filter { |trail| trail.hikes.count >= params[:hike_number].to_i }
+
+        render json: trails, status: :ok
+    end
+
     private
 
     def trail_params

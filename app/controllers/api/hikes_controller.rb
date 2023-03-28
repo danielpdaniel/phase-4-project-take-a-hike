@@ -39,7 +39,7 @@ class Api::HikesController < ApplicationController
     private
 
     def hike_params
-        params.permit(:user_id, :trail_id, :rating, :notes, :image, :date)
+        params.permit(:trail_id, :rating, :notes, :image, :date)
     end
 
     def invalid_hike_response(invalid)

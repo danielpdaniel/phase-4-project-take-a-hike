@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-
+import { useState, useEffect, useContext } from "react"
+import { UserContext } from "./context/user";
 import { NavLink } from "react-router-dom";
 
 function Trails(){
@@ -11,6 +11,8 @@ function Trails(){
     const [image, setImage] = useState("")
     const [distance, setDistance] = useState("")
     const [intensity, setIntensity] = useState("")
+
+    const { user } = useContext(UserContext)
 
     useEffect(()=>{
         fetch("/api/trails")
@@ -59,7 +61,8 @@ function Trails(){
             <ul>
             {trails ? trails.map(trail=><li key={trail.id}><NavLink to={`/trails/${trail.id}`}>{trail.name}</NavLink></li>): <li>Loading...</li>}
             </ul>
-        <div>
+        {user ?
+            <div>
             <h2>Add New Trail:</h2>
             <form className="newTrailForm" onSubmit={(e)=>handleSubmit(e)}>
                 <label htmlFor="name">Name: </label>
@@ -77,6 +80,8 @@ function Trails(){
                     <input type="submit"/>
             </form>
         </div>
+        :
+        <div><h3>Login/Signup to Post New Trails!</h3></div>}
             {errors ? 
             <div>
                 <h3>Error!</h3>
