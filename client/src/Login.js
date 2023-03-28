@@ -101,7 +101,7 @@ function Login() {
                 <h3>Error!</h3>
                 <ul>
                     {errors.map(error => 
-                        <li>{error}</li>)}
+                        <li key={error}>{error}</li>)}
                 </ul>
             </div> 
             : null}

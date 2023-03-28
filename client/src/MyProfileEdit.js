@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditStatus}){
+function MyProfileEdit({pageUser, setPageUser, setUserEditStatus}){
     const [about, setAbout] = useState(pageUser.about)
     const [avatar, setAvatar] = useState(pageUser.avatar_image)
     const [username, setUsername] = useState(pageUser.username)
@@ -44,10 +44,6 @@ function MyProfileEdit({profileLoginStatus, pageUser, setPageUser, setUserEditSt
             }else {
                 r.json().then(e => setErrors(e.errors))
             }
-        // .then(data=>{
-        //     setPageUser(data);
-        //     setUserEditStatus(false)
-        // })
             })
     }
 

@@ -10,9 +10,8 @@ function MyProfile(){
     useEffect(()=>{
        if(user){
         setPageUser(user)
-        // setHikes(user.hikes)
         const arr = []
-        // if(user.trails)
+        
         if (user.trails){
         user.trails.map(trail => arr.find(arrTrail => arrTrail.id === trail.id) ? null : arr.push(trail))
         setMappedTrails(arr)

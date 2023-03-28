@@ -17,6 +17,7 @@ class Api::UsersController < ApplicationController
     end
 
     def session_user
+
         if @user
             render json: @user, status: :ok, serializer: UserShowAndUpdateSerializer
         else

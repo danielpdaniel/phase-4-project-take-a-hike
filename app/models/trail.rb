@@ -11,9 +11,4 @@ class Trail < ApplicationRecord
     validates :distance, presence: true, numericality: true
     validates :intensity, presence: true, numericality: {greater_than: 0, less_than_or_equal_to: 10}
 
-    def self.order_by_hike_count
-        trails = self.all
-        byebug
-    end
-
 end
